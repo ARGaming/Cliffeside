@@ -4,6 +4,7 @@
 
 #include "Entity.h"
 #include "Math.h"
+#include "Arc.h"
 
 const float BAR_HEIGHT = 300;
 const float FRAMETIME = 16.667;
@@ -65,11 +66,16 @@ int main()
     percental[0] = .001;
     percental[1] = .001;
 
+    Arc testArc(0.001f, 270, 70);
+    testArc.setPosition(sf::Vector2f(300, 300));
+
     while(isRunning)
     {
         gWind.clear();
         loopTime.restart();
         gWind.draw(bg);
+        gWind.draw(testArc);
+
         if(gWind.pollEvent(eventH))
         {
             if(eventH.type == sf::Event::KeyPressed)
@@ -91,6 +97,10 @@ int main()
                     mp.x  = sf::Mouse::getPosition(gWind).x;
                     mp.y  = sf::Mouse::getPosition(gWind).y;
                     bobby.setPosition(mp);
+                }
+                else
+                {
+                    testArc.startSwing(45);
                 }
             }
             else if(eventH.type == sf::Event::MouseMoved and sf::Mouse::isButtonPressed(sf::Mouse::Right))
@@ -136,6 +146,7 @@ int main()
             sideBar[0].setScale(sf::Vector2f(1,percental[0]));
             sideBar[1].setScale(sf::Vector2f(1,percental[1]));
         }
+        testArc.update(deltaTime.asSeconds());
 
 
         gWind.draw(sideBar[0]);
