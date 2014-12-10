@@ -1,76 +1,137 @@
 #include "Entity.h"
+#include "Math.h"
 #include <cmath>
+
+using namespace arMath;
 
 Entity::Entity()
 {
-    pos.x = 0;
-    pos.y = 0;
-    angle.x = 0;
-    angle.y = 1;
+    m_pos.x = 0;
+    m_pos.y = 0;
+    m_angle = 0;
+    m_speed = 5.0;
+    m_sprite.setOrigin(30, 25);
 }
 
-Entity::Entity(sf::Vector2f initP,sf::Vector2f initA)
+Entity::Entity(sf::Vector2f initP)
 {
-    pos.x = initP.x;
-    pos.y = initP.y;
-    angle.x = initA.x;
-    angle.y = initA.y;
+    m_pos.x = initP.x;
+    m_pos.y = initP.y;
+
+    m_sprite.setPosition(m_pos);
+    m_sprite.setOrigin(30, 25);
 }
 
 void Entity::lockMove(sf::Vector2f movVector)
 {
-    pos.x += movVector.x;
-    pos.y += movVector.y;
+    m_pos.x += movVector.x;
+    m_pos.y += movVector.y;
 }
 
 void Entity::freeMove(sf::Vector2f movVector)
 {
-    pos.x += movVector.x;
-    pos.y += movVector.y;
+    m_pos.x += movVector.x;
+    m_pos.y += movVector.y;
 
-    float dist = sqrt(movVector.x * movVector.x + movVector.y * movVector.y);
+    /*
+    movVector =  Math::normalize(movVector);
 
-    angle.x = movVector.x / dist;
-    angle.y = movVector.y / dist;
+    m_angle.x = movVector.x;
+    m_angle.y = movVector.y;
+    */
 }
 
-sf::Vector2f Entity::getPostion()
+sf::Vector2f Entity::arGetPosition()
 {
-    return pos;
+    return m_pos;
 }
-sf::Vector2f Entity::getAngle()
+float Entity::arGetAngle()
 {
-    return angle;
-}
-
-int Entity::getHealth()
-{
-    return health;
+    return m_angle;
 }
 
-bool Entity::getAlive()
+int Entity::arGetHealth()
 {
-    return alive;
+    return m_health;
 }
 
-void Entity::setPostion(sf::Vector2f posDelta)
+bool Entity::arGetAlive()
 {
-    pos.x = posDelta.x;
-    pos.y = posDelta.y;
+    return m_alive;
 }
 
-void Entity::setAngle(sf::Vector2f angleDelta)
+float Entity::arGetSpeed()
 {
-    angle.x = angleDelta.x;
-    angle.y = angleDelta.y;
+    return m_speed;
 }
 
-void Entity::setHealth(int newHealth)
+sf::Vector2f Entity::arGetSize()
 {
-    health += newHealth;
+    return m_vSize;
 }
 
-void Entity::setAlive(bool isAlive)
+sf::Sprite Entity::arGetSprite()
 {
-    alive = isAlive;
+    return m_sprite;
+}
+
+sf::Texture Entity::arGetTexture()
+{
+    return m_texture;
+}
+
+float Entity::arGetRotation()
+{
+    return m_angle;
+}
+
+
+void Entity::arSetPosition(sf::Vector2f posDelta)
+{
+    m_pos.x = posDelta.x;
+    m_pos.y = posDelta.y;
+    m_sprite.setPosition(posDelta);
+}
+
+void Entity::arSetAngle(float angle)
+{
+    m_angle = angle;
+}
+
+void Entity::arSetHealth(int newHealth)
+{
+    m_health += newHealth;
+}
+
+void Entity::arSetAlive(bool isAlive)
+{
+    m_alive = isAlive;
+}
+
+void Entity::arSetSize(sf::Vector2f newSize)
+{
+    m_vSize = newSize;
+}
+
+void Entity::arSetSpeed(int newSpeed)
+{
+    m_speed = newSpeed;
+}
+
+void Entity::arSetTexture(std::string filename)
+{
+    m_texture.loadFromFile(filename);
+    m_texture.setSmooth(true);
+    m_sprite.setTexture(m_texture);
+}
+
+void Entity::arRotate(float angle)
+{
+    m_angle = angle;
+    m_sprite.setRotation(m_angle);
+}
+
+void Entity::arMovePlayer(float dx, float dy)
+{
+    m_sprite.move(dx, dy);
 }
