@@ -3,6 +3,7 @@
 #include<SFML/Graphics.hpp>
 #include "Math.h"
 #include "Player.h"
+#include "Arc.h"
 
 using namespace arMath;
 
@@ -49,13 +50,18 @@ int main()
     float percental[2];
     percental[0] = .001;
     percental[1] = .001;
-
+    Arc arc(0.001f, 135, 70);
+    arc.setPosition(sf::Vector2f(500, 500));
 
     while(gWind.isOpen())
     {
         gWind.clear();
         loopTime.restart();
         gWind.draw(bg);
+
+        arc.update(deltaTime.asSeconds());
+        gWind.draw(arc);
+
         if(gWind.pollEvent(eventH))
         {
             if(eventH.type == sf::Event::KeyPressed)
@@ -103,6 +109,8 @@ int main()
             {
                 if (eventH.mouseButton.button == sf::Mouse::Left)
                 {
+                    arc.startSwing(90);
+
                     sf::Vector2f mousePos;
                     mousePos.x = sf::Mouse::getPosition().x;
                     mousePos.y = sf::Mouse::getPosition().y;
