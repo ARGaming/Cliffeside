@@ -3,6 +3,7 @@
 #include<SFML/Graphics.hpp>
 #include "Math.h"
 #include "Player.h"
+#include "Arc.h"
 
 using namespace arMath;
 
@@ -25,7 +26,8 @@ int main()
     Player player(sf::Vector2f(1280 / 2, 720 / 2));
     player.arSetTexture("testTrig.png");
 
-
+    Arc arc(0.001f, 135, 60);
+    arc.setPosition(sf::Vector2f(500, 500));
 
     sf::RectangleShape sideBar[2];
 
@@ -56,6 +58,8 @@ int main()
         gWind.clear();
         loopTime.restart();
         gWind.draw(bg);
+        gWind.draw(arc);
+
         if(gWind.pollEvent(eventH))
         {
             if(eventH.type == sf::Event::KeyPressed)
@@ -101,6 +105,8 @@ int main()
             }
             else if (eventH.type == sf::Event::MouseButtonPressed)
             {
+                arc.startSwing(90);
+
                 if (eventH.mouseButton.button == sf::Mouse::Left)
                 {
                     sf::Vector2f mousePos;
@@ -159,6 +165,7 @@ int main()
         gWind.draw(player.arGetSprite());
 
         deltaTime += loopTime.getElapsedTime();
+        arc.update(deltaTime.asSeconds());
         if(deltaTime.asMilliseconds() > FRAMETIME)
         {
             if(percental[0] >= 1)
