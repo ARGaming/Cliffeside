@@ -27,7 +27,7 @@ int main()
     player.arSetTexture("testTrig.png");
 
     Arc arc(0.001f, 135, 60);
-    arc.setPosition(sf::Vector2f(500, 500));
+    arc.arSetPosition(sf::Vector2f(500, 500));
 
     sf::RectangleShape sideBar[2];
 
@@ -105,7 +105,7 @@ int main()
             }
             else if (eventH.type == sf::Event::MouseButtonPressed)
             {
-                arc.startSwing(90);
+                arc.arStartSwing(90);
 
                 if (eventH.mouseButton.button == sf::Mouse::Left)
                 {
@@ -165,7 +165,17 @@ int main()
         gWind.draw(player.arGetSprite());
 
         deltaTime += loopTime.getElapsedTime();
-        arc.update(deltaTime.asSeconds());
+        arc.arUpdate(deltaTime.asSeconds());
+
+        std::vector<sf::Vector2f> arcColPoints = arc.arGetCollisionPoints();
+
+        for (auto it = arcColPoints.begin(); it != arcColPoints.end(); ++it)
+        {
+            sf::CircleShape cs(2);
+            cs.setPosition(*it);
+            gWind.draw(cs);
+        }
+
         if(deltaTime.asMilliseconds() > FRAMETIME)
         {
             if(percental[0] >= 1)
