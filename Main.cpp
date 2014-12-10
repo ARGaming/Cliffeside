@@ -2,7 +2,7 @@
 #include<SFML/Audio.hpp>
 #include<SFML/Graphics.hpp>
 #include "Math.h"
-#include "Entity.h"
+#include "Player.h"
 
 using namespace arMath;
 
@@ -22,9 +22,8 @@ int main()
     bg.setFillColor(sf::Color::Black);
     bg.setSize(sf::Vector2f(1280,720));
 
-    Entity player(sf::Vector2f(1000, 100), sf::Vector2f(-1, 0));
-    player.setSize(sf::Vector2f(50, 50));
-    player.setTexture("testTrig.png");
+    Player player(sf::Vector2f(1280 / 2, 720 / 2));
+    player.arSetTexture("testTrig.png");
 
 
 
@@ -70,30 +69,82 @@ int main()
 
                 if (eventH.key.code == sf::Keyboard::A)
                 {
-                   player.movePlayer(-10, 0);
+                   player.arMovePlayer(-10, 0);
                 }
 
                 if (eventH.key.code == sf::Keyboard::S)
                 {
-                    player.movePlayer(0, 10);
+                    player.arMovePlayer(0, 10);
                 }
 
                 if (eventH.key.code == sf::Keyboard::W)
                 {
-                    player.movePlayer(0, -as10);
+                    player.arMovePlayer(0, -10);
                 }
 
                 if (eventH.key.code == sf::Keyboard::D)
                 {
-                    player.movePlayer(10, 0);
+                    player.arMovePlayer(10, 0);
+                }
+
+                if (eventH.key.code == sf::Keyboard::F)
+                {
+                    player.arRotate(0);
+
+                }
+
+                if (eventH.key.code == sf::Keyboard::C)
+                {
+                    player.arRotate(180);
                 }
 
             }
             else if (eventH.type == sf::Event::MouseButtonPressed)
             {
-                if (eventH.mouseButton.button == sf::Mouse::Right)
+                if (eventH.mouseButton.button == sf::Mouse::Left)
                 {
+                    sf::Vector2f mousePos;
+                    mousePos.x = sf::Mouse::getPosition().x;
+                    mousePos.y = sf::Mouse::getPosition().y;
 
+                    /*Quadrant 2*/
+                    if (mousePos.x >= 0 && mousePos.x < 640)
+                    {
+                        if (mousePos.y >= 0 && mousePos.y < 360)
+                        {
+                            player.arRotate(45);
+                        }
+
+                    }
+
+                    /*Quadrant 1*/
+                    if (mousePos.x >= 640 && mousePos.x <= 1280)
+                    {
+                        if (mousePos.y < 360 && mousePos.y >= 0)
+                        {
+                            player.arRotate(135);
+                        }
+                    }
+
+                    /*Quadrant 3*/
+                    if (mousePos.x >= 0 && mousePos.x < 640)
+                    {
+                        if (mousePos.y >= 360 && mousePos.y <= 720)
+                        {
+                            player.arRotate(-45);
+                        }
+
+                    }
+
+                    /*Quadrant 4*/
+                    if (mousePos.x >= 640 && mousePos.x <= 1280)
+                    {
+                        if (mousePos.y >= 360 && mousePos.y <= 720)
+                        {
+                            player.arRotate(-135);
+                        }
+
+                    }
                 }
             }
 
@@ -105,7 +156,7 @@ int main()
             break;
         }
 
-        gWind.draw(player.getSprite());
+        gWind.draw(player.arGetSprite());
 
         deltaTime += loopTime.getElapsedTime();
         if(deltaTime.asMilliseconds() > FRAMETIME)

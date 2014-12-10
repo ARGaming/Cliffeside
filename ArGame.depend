@@ -422,3 +422,40 @@
 1418096217 c:\users\cyberpower\desktop\programming\argame\argame\math.h
 	<SFML/Graphics.hpp>
 
+1418181229 source:c:\users\cyberpower\desktop\programming\cliffeside\entity.cpp
+	"Entity.h"
+	"Math.h"
+	<cmath>
+
+1418180552 c:\users\cyberpower\desktop\programming\cliffeside\entity.h
+	<SFML/Graphics.hpp>
+	<string>
+
+1418167865 source:c:\users\cyberpower\desktop\programming\cliffeside\math.cpp
+	"Math.h"
+	<iostream>
+	<cmath>
+
+1418163538 c:\users\cyberpower\desktop\programming\cliffeside\math.h
+	<SFML/Graphics.hpp>
+
+1418171944 source:c:\users\cyberpower\desktop\programming\cliffeside\test.cpp
+	<iostream>
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
+	"Math.h"
+	"Entity.h"
+
+1418181686 source:c:\users\cyberpower\desktop\programming\cliffeside\main.cpp
+	<iostream>
+	<SFML/Audio.hpp>
+	<SFML/Graphics.hpp>
+	"Math.h"
+	"Player.h"
+
+1418181700 c:\users\cyberpower\desktop\programming\cliffeside\player.h
+	"Entity.h"
+
+1418181700 source:c:\users\cyberpower\desktop\programming\cliffeside\player.cpp
+	"Player.h"
+
