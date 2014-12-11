@@ -20,6 +20,17 @@ it only holds sadness for him. However he later learn that his father-in-law is 
 that it was the warlock that told his wife to kill him. With this new knowledge Cliffe set out on a 
 quest to kill the man who took all that he had left.
 
+Major Game Zones:
+
+1. Swamp Town - Swamp Creatures, Goblins, Orcs
+2. Forest - Forest Creatures, Orcs, Bandits
+3. Westbridge - Trained Beasts, Mobsters, Null Mages
+4. Westbridge Mage Tower - Dark Mages, Risen Dead, Necromancers
+5. Capital City - League of Assassins
+6. Nothern Wastes - Tundra Creatures, Yeti, Giants
+7. Black Forge Mountain - Giant Spiders, Living Rock Golems, Salamanders, Dragon
+8. Hellsgate Dungeon - Imps, Demons, Warlock
+
 Game Mechanics:
 
 2.5D Sidescrolling Action RPG
