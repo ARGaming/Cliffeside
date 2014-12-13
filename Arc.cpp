@@ -13,12 +13,18 @@ Arc::Arc(float speed, float range, float length)
     m_collider.setFillColor(sf::Color::Red);
 }
 
-
-void Arc::arUpdate(float dt)
+void Arc::arUpdate()
 {
+    //Ensure the angle is between 0 and 360
+    float angle = m_collider.getRotation();
+    if (angle < 0)
+    {
+        angle += 360;
+    }
+
     if (m_swinging)
     {
-        if (m_swingPercentage >= 0.999f)
+        if (m_swingPercentage >= 0.9f || m_swingPercentage < 0)
         {
             m_swinging = false;
             m_swingPercentage = 0;
@@ -26,8 +32,7 @@ void Arc::arUpdate(float dt)
         else
         {
             m_collider.rotate(m_range * m_speed);
-            m_swingPercentage = m_collider.getRotation() / (m_beginSwingAngle + m_range);
-            std::cout << m_swingPercentage << "\n";
+            m_swingPercentage = angle / (m_beginSwingAngle + m_range);
         }
     }
 }
@@ -40,8 +45,14 @@ void Arc::draw(sf::RenderTarget& target, sf::RenderStates states) const
 void Arc::arStartSwing(float angle)
 {
     m_swinging = true;
+    //Ensure angle is between 0 and 360
+    if (angle < 0)
+    {
+        angle += 360;
+    }
     m_beginSwingAngle = angle;
     m_collider.setRotation(angle);
+    m_swingPercentage = 0;
 }
 
 void Arc::arSetPosition(const sf::Vector2f& pos)

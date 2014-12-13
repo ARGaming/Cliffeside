@@ -20,7 +20,6 @@ int main()
     sf::Clock loopTime;
     sf::Time deltaTime;
 
-
     /*Background*/
     sf::RectangleShape bg;
     bg.setFillColor(sf::Color::Black);
@@ -31,11 +30,6 @@ int main()
     Player player(sf::Vector2f(1280 / 2, 720 / 2));
     player.arSetTexture("player.png");
     player.arSetSize(sf::Vector2f(50.0, 50.0));
-
-    /*Game Objects*/
-    //Weapon Arc
-    Arc arc(0.001f, 135, 60);
-    arc.arSetPosition(sf::Vector2f(500, 500));
 
     //Stamina bars
     sf::RectangleShape sideBar[2];
@@ -56,96 +50,89 @@ int main()
     sideBar[1].setOutlineColor(sf::Color::White);
     sideBar[1].setOutlineThickness(2);
 
-
     float percental[2];
     percental[0] = .001;
     percental[1] = .001;
 
-
     /*Game Loop*/
     while(gWind.isOpen())
     {
-        gWind.clear();
-        loopTime.restart();
-        gWind.draw(bg);
-        gWind.draw(player.arGetSprite());
-        gWind.draw(arc);
-
-        if(gWind.pollEvent(eventH))
+        //Handle events
+        while (gWind.pollEvent(eventH))
         {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
+            player.arHandleEvent(eventH);
 
-           //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
-           float angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
-           player.arRotate(angle);
-           player.arSetViewDir(sf::Vector2f(mousePos.x - player.arGetPosition().x, mousePos.y - player.arGetPosition().y));
+            if (eventH.type == sf::Event::MouseMoved)
+            {
+                sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
 
-           std::cout << "\nView Dir:  X=" << player.arGetViewDir().x << " Y=" << player.arGetViewDir().y;
+                //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
+                float angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
+                player.arRotate(angle);
+                player.arSetViewDir(sf::Vector2f(mousePos.x - player.arGetPosition().x, mousePos.y - player.arGetPosition().y));
+
+                std::cout << "\nView Dir:  X=" << player.arGetViewDir().x << " Y=" << player.arGetViewDir().y;
+            }
 
             if(eventH.type == sf::Event::KeyPressed)
             {
-
                 if(eventH.key.code == sf::Keyboard::Escape)
                 {
+                    gWind.close();
                     break;
                 }
-
-
-                if (eventH.key.code == sf::Keyboard::A)
+            }
+            else if (eventH.type == sf::Event::MouseButtonPressed)
+            {
+                if (eventH.mouseButton.button == sf::Mouse::Right)
                 {
-                   player.arMovePlayer(-10, 0);
-                }
+                    sf::Vector2f mousePos;
+                    mousePos.x = sf::Mouse::getPosition(gWind).x;
+                    mousePos.y = sf::Mouse::getPosition(gWind).y;
 
-                if (eventH.key.code == sf::Keyboard::S)
-                {
-                    player.arMovePlayer(0, 10);
-                }
-
-                if (eventH.key.code == sf::Keyboard::W)
-                {
-                    player.arMovePlayer(0, -10);
-                }
-
-                if (eventH.key.code == sf::Keyboard::D)
-                {
-                    player.arMovePlayer(10, 0);
+                    /*Quadrant 2*/
+                    if (mousePos.x < 640)
+                    {
+                        if (mousePos.y < 360)
+                        {
+                            player.arRotate(-135);
+                        }
+                        else
+                        {
+                            player.arRotate(135);
+                        }
+                    }
+                    else
+                    {
+                        if (mousePos.y < 360)
+                        {
+                            player.arRotate(-45);
+                        }
+                        else
+                        {
+                            player.arRotate(45);
+                        }
+                    }
                 }
 
             }
             else if (eventH.type == sf::Event::MouseButtonPressed)
             {
-                if (eventH.mouseButton.button == sf::Mouse::Left)
-                {
-                    arc.arStartSwing(90);
-                }
-
                 if (eventH.mouseButton.button == sf::Mouse::Right)
                 {
 
                 }
             }
 
+            if (eventH.type == sf::Event::Closed)
+            {
+                gWind.close();
+                break;
+            }
         }
 
-        if (eventH.type == sf::Event::Closed)
-        {
-
-            break;
-        }
-
-        deltaTime += loopTime.getElapsedTime();
-        arc.arUpdate(deltaTime.asSeconds());
-
-        std::vector<sf::Vector2f> arcColPoints = arc.arGetCollisionPoints();
-
-        for (auto it = arcColPoints.begin(); it != arcColPoints.end(); ++it)
-        {
-            sf::CircleShape cs(2);
-            cs.setPosition(*it);
-            gWind.draw(cs);
-        }
-
-        if(deltaTime.asMilliseconds() > FRAMETIME)
+        //Update
+        while (deltaTime.asMilliseconds() > FRAMETIME)
         {
             if(percental[0] >= 1)
             {
@@ -169,17 +156,27 @@ int main()
             {
                 percental[1] += (.01667/2);
             }
-            deltaTime -= sf::milliseconds(FRAMETIME);
+
+            player.arUpdate();
+
             sideBar[0].setScale(sf::Vector2f(1,percental[0]));
             sideBar[1].setScale(sf::Vector2f(1,percental[1]));
 
+            deltaTime -= sf::milliseconds(FRAMETIME);
         }
 
+        //Draw
+        gWind.clear();
+        gWind.draw(bg);
+        player.draw(gWind);
 
         gWind.draw(sideBar[0]);
         gWind.draw(sideBar[1]);
 
         gWind.display();
+
+        //Update delta time
+        deltaTime += loopTime.restart();
     }
     return 0;
 }

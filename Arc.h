@@ -11,7 +11,7 @@ public:
     //Speed = fraction of range moved each frame, e.g. 1 speed = reach the end in one frame
     Arc(float speed, float range, float length);
 
-    void arUpdate(float dt);
+    void arUpdate();
     void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
     //Start a swing from the passed angle until the range specified in the constructor
