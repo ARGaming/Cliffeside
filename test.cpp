@@ -79,34 +79,10 @@ int main()
 
             if(eventH.type == sf::Event::KeyPressed)
             {
-
                 if(eventH.key.code == sf::Keyboard::Escape)
                 {
+                    gWind.close();
                     break;
-                }
-                if (eventH.key.code == sf::Keyboard::A)
-                {
-                   player.arMovePlayer(-10, 0);
-                }
-                if (eventH.key.code == sf::Keyboard::S)
-                {
-                    player.arMovePlayer(0, 10);
-                }
-                if (eventH.key.code == sf::Keyboard::W)
-                {
-                    player.arMovePlayer(0, -10);
-                }
-                if (eventH.key.code == sf::Keyboard::D)
-                {
-                    player.arMovePlayer(10, 0);
-                }
-                if (eventH.key.code == sf::Keyboard::F)
-                {
-                    player.arRotate(0);
-                }
-                if (eventH.key.code == sf::Keyboard::C)
-                {
-                    player.arRotate(180);
                 }
             }
             else if (eventH.type == sf::Event::MouseButtonPressed)
@@ -192,6 +168,7 @@ int main()
             }
 
             arc.arUpdate();
+            player.arUpdate();
 
             sideBar[0].setScale(sf::Vector2f(1,percental[0]));
             sideBar[1].setScale(sf::Vector2f(1,percental[1]));

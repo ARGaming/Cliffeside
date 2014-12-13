@@ -12,6 +12,33 @@ Player::Player(sf::Vector2f initP)
 
 }
 
+void Player::arUpdate()
+{
+    sf::Vector2f dir;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    {
+        dir.x -= 1;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
+        dir.x += 1;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        dir.y -= 1;
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        dir.y += 1;
+    }
+
+    arMovePlayer(dir.x * 10, dir.y * 10);
+}
+
 float Player::arGetStamina()
 {
     return m_stamina;
