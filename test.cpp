@@ -69,96 +69,69 @@ int main()
                 {
                     break;
                 }
-
-
                 if (eventH.key.code == sf::Keyboard::A)
                 {
                    player.arMovePlayer(-10, 0);
                 }
-
                 if (eventH.key.code == sf::Keyboard::S)
                 {
                     player.arMovePlayer(0, 10);
                 }
-
                 if (eventH.key.code == sf::Keyboard::W)
                 {
                     player.arMovePlayer(0, -10);
                 }
-
                 if (eventH.key.code == sf::Keyboard::D)
                 {
                     player.arMovePlayer(10, 0);
                 }
-
                 if (eventH.key.code == sf::Keyboard::F)
                 {
                     player.arRotate(0);
-
                 }
-
                 if (eventH.key.code == sf::Keyboard::C)
                 {
                     player.arRotate(180);
                 }
-
             }
             else if (eventH.type == sf::Event::MouseButtonPressed)
             {
                 arc.arStartSwing(90);
 
-                if (eventH.mouseButton.button == sf::Mouse::Left)
+                if (eventH.mouseButton.button == sf::Mouse::Right)
                 {
                     sf::Vector2f mousePos;
-                    mousePos.x = sf::Mouse::getPosition().x;
-                    mousePos.y = sf::Mouse::getPosition().y;
+                    mousePos.x = sf::Mouse::getPosition(gWind).x;
+                    mousePos.y = sf::Mouse::getPosition(gWind).y;
 
                     /*Quadrant 2*/
-                    if (mousePos.x >= 0 && mousePos.x < 640)
+                    if (mousePos.x < 640)
                     {
-                        if (mousePos.y >= 0 && mousePos.y < 360)
+                        if (mousePos.y < 360)
                         {
-                            player.arRotate(45);
+                            player.arRotate(-135);
                         }
-
-                    }
-
-                    /*Quadrant 1*/
-                    if (mousePos.x >= 640 && mousePos.x <= 1280)
-                    {
-                        if (mousePos.y < 360 && mousePos.y >= 0)
+                        else
                         {
                             player.arRotate(135);
                         }
                     }
-
-                    /*Quadrant 3*/
-                    if (mousePos.x >= 0 && mousePos.x < 640)
+                    else
                     {
-                        if (mousePos.y >= 360 && mousePos.y <= 720)
+                        if (mousePos.y < 360)
                         {
                             player.arRotate(-45);
                         }
-
-                    }
-
-                    /*Quadrant 4*/
-                    if (mousePos.x >= 640 && mousePos.x <= 1280)
-                    {
-                        if (mousePos.y >= 360 && mousePos.y <= 720)
+                        else
                         {
-                            player.arRotate(-135);
+                            player.arRotate(45);
                         }
-
                     }
                 }
             }
-
         }
-
         if (eventH.type == sf::Event::Closed)
         {
-
             break;
         }
 
