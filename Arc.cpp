@@ -14,7 +14,7 @@ Arc::Arc(float speed, float range, float length)
 }
 
 
-void Arc::arUpdate(float dt)
+void Arc::arUpdate()
 {
     if (m_swinging)
     {
