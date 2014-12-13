@@ -35,6 +35,7 @@ namespace arMath
         return normVec;
     }
 
+
     float Math::angleBetweenVecs(sf::Vector2f A, sf::Vector2f B)
     {
         float angle = acosf(dotProduct(A, B) / (length(A) * length(B)));
