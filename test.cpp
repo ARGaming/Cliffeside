@@ -76,10 +76,11 @@ int main()
             sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
 
            //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
-           float angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().y) * (180/PI);
+           float angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
            player.arRotate(angle);
+           player.arSetViewDir(sf::Vector2f(mousePos.x - player.arGetPosition().x, mousePos.y - player.arGetPosition().y));
 
-           std::cout << "Angle: " << angle;
+           std::cout << "\nView Dir:  X=" << player.arGetViewDir().x << " Y=" << player.arGetViewDir().y;
 
             if(eventH.type == sf::Event::KeyPressed)
             {

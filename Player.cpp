@@ -31,3 +31,8 @@ sf::Vector2f Player::arGetViewDir()
 {
     return m_viewDir;
 }
+
+void Player::arSetViewDir(sf::Vector2f dir)
+{
+    m_viewDir = dir;
+}

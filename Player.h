@@ -11,6 +11,7 @@ public:
     float arGetStamina();
     sf::Vector2f arGetBodyCenter();
     sf::Vector2f arGetViewDir();
+    void arSetViewDir(sf::Vector2f);
 
 private:
     float m_stamina;
