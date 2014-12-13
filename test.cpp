@@ -4,11 +4,13 @@
 #include "Math.h"
 #include "Player.h"
 #include "Arc.h"
+#include "Entity.h"
 
 using namespace arMath;
 
 const float BAR_HEIGHT = 300;
 const float FRAMETIME = 16.667;
+const double PI = 4.0*atan(1.0);
 
 int main()
 {
@@ -19,16 +21,23 @@ int main()
     sf::Time deltaTime;
 
 
+    /*Background*/
     sf::RectangleShape bg;
     bg.setFillColor(sf::Color::Black);
     bg.setSize(sf::Vector2f(1280,720));
 
+    /*Game Entities*/
+    //Player
     Player player(sf::Vector2f(1280 / 2, 720 / 2));
-    player.arSetTexture("testTrig.png");
+    player.arSetTexture("player.png");
+    player.arSetSize(sf::Vector2f(50.0, 50.0));
 
+    /*Game Objects*/
+    //Weapon Arc
     Arc arc(0.001f, 135, 60);
     arc.arSetPosition(sf::Vector2f(500, 500));
 
+    //Stamina bars
     sf::RectangleShape sideBar[2];
 
     sideBar[0].setSize(sf::Vector2f(20,BAR_HEIGHT));
@@ -53,15 +62,26 @@ int main()
     percental[1] = .001;
 
 
+    /*Game Loop*/
     while(gWind.isOpen())
     {
         gWind.clear();
         loopTime.restart();
         gWind.draw(bg);
+        gWind.draw(player.arGetSprite());
         gWind.draw(arc);
 
         if(gWind.pollEvent(eventH))
         {
+            sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
+
+           //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
+           float angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
+           player.arRotate(angle);
+           player.arSetViewDir(sf::Vector2f(mousePos.x - player.arGetPosition().x, mousePos.y - player.arGetPosition().y));
+
+           std::cout << "\nView Dir:  X=" << player.arGetViewDir().x << " Y=" << player.arGetViewDir().y;
+
             if(eventH.type == sf::Event::KeyPressed)
             {
 
@@ -128,14 +148,25 @@ int main()
                         }
                     }
                 }
+
+            }
+            else if (eventH.type == sf::Event::MouseButtonPressed)
+            {
+                if (eventH.mouseButton.button == sf::Mouse::Left)
+                {
+                    arc.arStartSwing(90);
+                }
+
+                if (eventH.mouseButton.button == sf::Mouse::Right)
+                {
+
+                }
             }
         }
         if (eventH.type == sf::Event::Closed)
         {
             break;
         }
-
-        gWind.draw(player.arGetSprite());
 
         deltaTime += loopTime.getElapsedTime();
         arc.arUpdate(deltaTime.asSeconds());

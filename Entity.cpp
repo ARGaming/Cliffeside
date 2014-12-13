@@ -10,7 +10,6 @@ Entity::Entity()
     m_pos.y = 0;
     m_angle = 0;
     m_speed = 5.0;
-    m_sprite.setOrigin(30, 25);
 }
 
 Entity::Entity(sf::Vector2f initP)
@@ -111,6 +110,7 @@ void Entity::arSetAlive(bool isAlive)
 void Entity::arSetSize(sf::Vector2f newSize)
 {
     m_vSize = newSize;
+    m_sprite.setOrigin(m_vSize.x / 2, m_vSize.y / 2);
 }
 
 void Entity::arSetSpeed(int newSpeed)

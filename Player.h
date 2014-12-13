@@ -9,9 +9,14 @@ public:
     Player();
     Player(sf::Vector2f);
     float arGetStamina();
+    sf::Vector2f arGetBodyCenter();
+    sf::Vector2f arGetViewDir();
+    void arSetViewDir(sf::Vector2f);
 
 private:
     float m_stamina;
+    sf::Vector2f m_viewDir;
+
 
 };
 
