@@ -36,7 +36,7 @@ public:
     void arRotate(float);
     void arMovePlayer(float, float);
 
-private:
+protected:
     sf::Vector2f m_pos;
     sf::Vector2f m_vSize;
     sf::Sprite m_sprite;

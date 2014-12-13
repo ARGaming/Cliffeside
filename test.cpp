@@ -31,11 +31,6 @@ int main()
     player.arSetTexture("player.png");
     player.arSetSize(sf::Vector2f(50.0, 50.0));
 
-    /*Game Objects*/
-    //Weapon Arc
-    Arc arc(0.16f, 135, 60);
-    arc.arSetPosition(sf::Vector2f(500, 500));
-
     //Stamina bars
     sf::RectangleShape sideBar[2];
 
@@ -65,6 +60,8 @@ int main()
         //Handle events
         while (gWind.pollEvent(eventH))
         {
+            player.arHandleEvent(eventH);
+
             if (eventH.type == sf::Event::MouseMoved)
             {
                 sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
@@ -87,8 +84,6 @@ int main()
             }
             else if (eventH.type == sf::Event::MouseButtonPressed)
             {
-                arc.arStartSwing(90);
-
                 if (eventH.mouseButton.button == sf::Mouse::Right)
                 {
                     sf::Vector2f mousePos;
@@ -123,11 +118,6 @@ int main()
             }
             else if (eventH.type == sf::Event::MouseButtonPressed)
             {
-                if (eventH.mouseButton.button == sf::Mouse::Left)
-                {
-                    arc.arStartSwing(90);
-                }
-
                 if (eventH.mouseButton.button == sf::Mouse::Right)
                 {
 
@@ -167,7 +157,6 @@ int main()
                 percental[1] += (.01667/2);
             }
 
-            arc.arUpdate();
             player.arUpdate();
 
             sideBar[0].setScale(sf::Vector2f(1,percental[0]));
@@ -179,18 +168,7 @@ int main()
         //Draw
         gWind.clear();
         gWind.draw(bg);
-        gWind.draw(player.arGetSprite());
-        gWind.draw(arc);
-
-        //Draw arc collision points
-        std::vector<sf::Vector2f> arcColPoints = arc.arGetCollisionPoints();
-
-        for (auto it = arcColPoints.begin(); it != arcColPoints.end(); ++it)
-        {
-            sf::CircleShape cs(2);
-            cs.setPosition(*it);
-            gWind.draw(cs);
-        }
+        player.draw(gWind);
 
         gWind.draw(sideBar[0]);
         gWind.draw(sideBar[1]);
