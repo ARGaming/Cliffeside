@@ -133,8 +133,6 @@ int main()
             break;
         }
 
-        //gWind.draw(player.arGetSprite());
-
         deltaTime += loopTime.getElapsedTime();
         arc.arUpdate(deltaTime.asSeconds());
 
