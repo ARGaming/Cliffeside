@@ -20,6 +20,26 @@ it only holds sadness for him. However he later learn that his father-in-law is 
 that it was the warlock that told his wife to kill him. With this new knowledge Cliffe set out on a 
 quest to kill the man who took all that he had left.
 
+Cliffe:
+
+Cliffe - Age : 37 - Height: 7'1" - Weight: 230lbs.(All Muscle)
+
+Greying - Battlescarred - Tired - Serious - Kind - ISFP
+
+Dark Brown Hair quite short - Hazel Eyes -5 o' Clock Shadow
+
+4 - 11 : Raised by Father (Mother dies in childbirth)
+
+12 - 20 : Watches thugs extort villagers for thier hard earned gold(including father)
+
+21 - 25 : Joins Royal Army (Discharged after serioous injury)
+
+26 - 27 : Meets and courts Sarah(Wife) and has Terrance(son)
+
+28 - 33 : Becomes a guard while rasing his son
+
+34 - 37 : Plague hits, son dies.
+
 Major Game Zones:
 
 1. Swamp Town - Swamp Creatures, Goblins, Orcs
