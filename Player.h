@@ -23,7 +23,7 @@ public:
 private:
     float m_stamina;
     sf::Vector2f m_viewDir;
-    const double PI = 4.0*atan(1.0);
+
 
     Arc m_attackArc;
 };

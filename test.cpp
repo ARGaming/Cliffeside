@@ -10,7 +10,7 @@ using namespace arMath;
 
 const float BAR_HEIGHT = 300;
 const float FRAMETIME = 16.667;
-const double PI = 4.0*atan(1.0);
+
 
 int main()
 {

@@ -32,22 +32,35 @@ void Player::arUpdate(float angle)
 {
     sf::Vector2f dir;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) and sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-        dir.x -= 1;
+        dir.x -= .65; dir.y += .65;
     }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) and sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        dir.x -= .65; dir.y -= .65;
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) and sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        dir.x += .65; dir.y += .65;
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) and sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    {
+        dir.x += .65; dir.y -= .65;
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         dir.x += 1;
     }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
         dir.y -= 1;
     }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    {
+        dir.y -= 1;
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         dir.y += 1;
     }
@@ -84,7 +97,7 @@ void Player::arUpdate(float angle)
             angle = 90;
             arSetViewDir(sf::Vector2f(0, 1));
         }
-        else if (angle > 120 and angle > 150)
+        else if (angle > 120 and angle <= 150)
         {
             angle = 135;
             arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, std::sqrt(2)/2)));
@@ -98,11 +111,10 @@ void Player::arUpdate(float angle)
         arRotate(angle);
 
         //Debug only*
-        std::cout << " Angle: " << angle;
-        std::cout << "\nView Dir:  X= " << arGetViewDir().x << " Y= " << arGetViewDir().y;
     }
 
-    arMovePlayer(dir.x * 10, dir.y * 10);
+    arMovePlayer(dir.x * 7, dir.y * 7);
+    arSetPosition(m_sprite.getPosition());
 
     m_attackArc.arUpdate();
     m_attackArc.arSetPosition(m_sprite.getPosition());
