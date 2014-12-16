@@ -30,6 +30,7 @@ int main()
     Player player(sf::Vector2f(1280 / 2, 720 / 2));
     player.arSetTexture("player.png");
     player.arSetSize(sf::Vector2f(50.0, 50.0));
+    float angle = 0.0;
 
     //Stamina bars
     sf::RectangleShape sideBar[2];
@@ -62,18 +63,6 @@ int main()
         {
             player.arHandleEvent(eventH);
 
-            if (eventH.type == sf::Event::MouseMoved)
-            {
-                sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
-
-                //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
-                float angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
-                player.arRotate(angle);
-                player.arSetViewDir(sf::Vector2f(mousePos.x - player.arGetPosition().x, mousePos.y - player.arGetPosition().y));
-
-                std::cout << "\nView Dir:  X=" << player.arGetViewDir().x << " Y=" << player.arGetViewDir().y;
-            }
-
             if(eventH.type == sf::Event::KeyPressed)
             {
                 if(eventH.key.code == sf::Keyboard::Escape)
@@ -82,46 +71,13 @@ int main()
                     break;
                 }
             }
-            else if (eventH.type == sf::Event::MouseButtonPressed)
+
+
+            if (eventH.type == sf::Event::MouseMoved)
             {
-                if (eventH.mouseButton.button == sf::Mouse::Right)
-                {
-                    sf::Vector2f mousePos;
-                    mousePos.x = sf::Mouse::getPosition(gWind).x;
-                    mousePos.y = sf::Mouse::getPosition(gWind).y;
-
-                    /*Quadrant 2*/
-                    if (mousePos.x < 640)
-                    {
-                        if (mousePos.y < 360)
-                        {
-                            player.arRotate(-135);
-                        }
-                        else
-                        {
-                            player.arRotate(135);
-                        }
-                    }
-                    else
-                    {
-                        if (mousePos.y < 360)
-                        {
-                            player.arRotate(-45);
-                        }
-                        else
-                        {
-                            player.arRotate(45);
-                        }
-                    }
-                }
-
-            }
-            else if (eventH.type == sf::Event::MouseButtonPressed)
-            {
-                if (eventH.mouseButton.button == sf::Mouse::Right)
-                {
-
-                }
+                //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
+                sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
+                angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
             }
 
             if (eventH.type == sf::Event::Closed)
@@ -157,7 +113,7 @@ int main()
                 percental[1] += (.01667/2);
             }
 
-            player.arUpdate();
+            player.arUpdate(angle);
 
             sideBar[0].setScale(sf::Vector2f(1,percental[0]));
             sideBar[1].setScale(sf::Vector2f(1,percental[1]));

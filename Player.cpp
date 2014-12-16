@@ -1,4 +1,5 @@
 #include "Player.h"
+#include <iostream>
 
 Player::Player()
     : m_attackArc(6.5f, 150, 100)
@@ -27,7 +28,7 @@ void Player::arHandleEvent(const sf::Event& e)
     }
 }
 
-void Player::arUpdate()
+void Player::arUpdate(float angle)
 {
     sf::Vector2f dir;
 
@@ -49,6 +50,56 @@ void Player::arUpdate()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         dir.y += 1;
+    }
+
+    if (sf::Event::MouseMoved)
+    {
+        if (angle <= 30 and angle >= -30)
+        {
+            angle = 0;
+            arSetViewDir(sf::Vector2f(1, 0));
+        }
+        else if (angle < -30 and angle >= -60)
+        {
+            angle = -45;
+            arSetViewDir(sf::Vector2f(std::sqrt(2)/2, -std::sqrt(2)/2));
+        }
+        else if (angle < -60 and angle >= -120)
+        {
+            angle = -90;
+            arSetViewDir((sf::Vector2f(0, -1)));
+        }
+        else if (angle < -120 and angle > -150)
+        {
+            angle = -135;
+            arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, -std::sqrt(2)/2)));
+        }
+        else if (angle > 30 and angle <= 60)
+        {
+            angle = 45;
+            arSetViewDir(sf::Vector2f(std::sqrt(2)/2, std::sqrt(2)/2));
+        }
+        else if (angle > 60 and angle <= 120)
+        {
+            angle = 90;
+            arSetViewDir(sf::Vector2f(0, 1));
+        }
+        else if (angle > 120 and angle > 150)
+        {
+            angle = 135;
+            arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, std::sqrt(2)/2)));
+        }
+        else
+        {
+            angle = 180;
+            arSetViewDir(sf::Vector2f(-1, 0));
+        }
+
+        arRotate(angle);
+
+        //Debug only*
+        std::cout << " Angle: " << angle;
+        std::cout << "\nView Dir:  X= " << arGetViewDir().x << " Y= " << arGetViewDir().y;
     }
 
     arMovePlayer(dir.x * 10, dir.y * 10);
