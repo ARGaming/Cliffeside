@@ -54,6 +54,8 @@
 		</Linker>
 		<Unit filename="Arc.cpp" />
 		<Unit filename="Arc.h" />
+		<Unit filename="Bar.cpp" />
+		<Unit filename="Bar.h" />
 		<Unit filename="Entity.cpp" />
 		<Unit filename="Entity.h" />
 		<Unit filename="Math.cpp" />
