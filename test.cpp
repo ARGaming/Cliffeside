@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Arc.h"
 #include "Entity.h"
+#include "Bar.h"
 
 using namespace arMath;
 
@@ -35,28 +36,13 @@ int main()
     player.arSetSize(sf::Vector2f(100.0, 100.0));
     float angle = 0.0;
 
-    //Stamina bars
-    sf::RectangleShape sideBar[2];
+    //Bars
+    Bar staminaBar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(255, 255, 0, 200));
+    Bar manaBar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(0, 55, 255, 200));
 
-    sideBar[0].setSize(sf::Vector2f(20,BAR_HEIGHT));
-    sideBar[1].setSize(sf::Vector2f(20,BAR_HEIGHT));
+    staminaBar.arSetPosition(sf::Vector2f(20, 20));
+    manaBar.arSetPosition(sf::Vector2f(20, 50));
 
-    sideBar[0].setPosition(40,50);
-    sideBar[1].setPosition(40,50 + 25);
-
-    sideBar[0].setRotation(270);
-    sideBar[1].setRotation(270);
-
-    sideBar[0].setFillColor(sf::Color(255,255,0,120));
-    sideBar[0].setOutlineColor(sf::Color(255,255,99,200));
-    sideBar[0].setOutlineThickness(2);
-    sideBar[1].setFillColor(sf::Color(0,0,255,120));
-    sideBar[1].setOutlineColor(sf::Color(99,99,255,200));
-    sideBar[1].setOutlineThickness(2);
-
-    float percental[2];
-    percental[0] = .001;
-    percental[1] = .001;
 
     /*Game Loop*/
     while(gWind.isOpen())
@@ -89,33 +75,9 @@ int main()
         //Update
         while (deltaTime.asMilliseconds() > FRAMETIME)
         {
-            if(percental[0] >= 1)
-            {
-            }
-            else if(percental[0] + (.01667/4.5) >= 1)
-            {
-                percental[0] = 1;
-            }
-            else
-            {
-                percental[0] += .01667/4.5;
-            }
-            if(percental[1] >= 1)
-            {
-            }
-            else if(percental[1] + (.01667/36) >= 1)
-            {
-                percental[1] = 1;
-            }
-            else
-            {
-                percental[1] += (.01667/36);
-            }
-
             player.arUpdate(angle);
-
-            sideBar[0].setScale(sf::Vector2f(1,percental[0]));
-            sideBar[1].setScale(sf::Vector2f(1,percental[1]));
+            staminaBar.arFill(0.01677f); //1 second at 60 fps
+            manaBar.arFill(0.01677f/4); //4 seconds at 60 fps
 
             deltaTime -= sf::milliseconds(FRAMETIME);
         }
@@ -125,8 +87,8 @@ int main()
         gWind.draw(bg);
         player.draw(gWind);
 
-        gWind.draw(sideBar[0]);
-        gWind.draw(sideBar[1]);
+        gWind.draw(staminaBar);
+        gWind.draw(manaBar);
 
         gWind.display();
 
