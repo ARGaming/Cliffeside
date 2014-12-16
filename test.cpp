@@ -38,17 +38,17 @@ int main()
     sideBar[0].setSize(sf::Vector2f(20,BAR_HEIGHT));
     sideBar[1].setSize(sf::Vector2f(20,BAR_HEIGHT));
 
-    sideBar[0].setPosition(200,600);
-    sideBar[1].setPosition(200,600 + 20);
+    sideBar[0].setPosition(40,50);
+    sideBar[1].setPosition(40,50 + 20);
 
     sideBar[0].setRotation(270);
     sideBar[1].setRotation(270);
 
-    sideBar[0].setFillColor(sf::Color::Yellow);
-    sideBar[0].setOutlineColor(sf::Color::White);
+    sideBar[0].setFillColor(sf::Color(255,255,0,120));
+    sideBar[0].setOutlineColor(sf::Color(255,255,99,120));
     sideBar[0].setOutlineThickness(2);
-    sideBar[1].setFillColor(sf::Color::Blue);
-    sideBar[1].setOutlineColor(sf::Color::White);
+    sideBar[1].setFillColor(sf::Color(0,0,255,120));
+    sideBar[1].setOutlineColor(sf::Color(99,99,255,120));
     sideBar[1].setOutlineThickness(2);
 
     float percental[2];
@@ -72,13 +72,9 @@ int main()
                 }
             }
 
-
-            if (eventH.type == sf::Event::MouseMoved)
-            {
-                //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
-                sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
-                angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
-            }
+            //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
+            sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
+            angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
 
             if (eventH.type == sf::Event::Closed)
             {
@@ -93,24 +89,24 @@ int main()
             if(percental[0] >= 1)
             {
             }
-            else if(percental[0] + .01667 >= 1)
+            else if(percental[0] + (.01667/4.5) >= 1)
             {
                 percental[0] = 1;
             }
             else
             {
-                percental[0] += .01667;
+                percental[0] += .01667/4.5;
             }
             if(percental[1] >= 1)
             {
             }
-            else if(percental[1] + (.01667/2) >= 1)
+            else if(percental[1] + (.01667/36) >= 1)
             {
                 percental[1] = 1;
             }
             else
             {
-                percental[1] += (.01667/2);
+                percental[1] += (.01667/36);
             }
 
             player.arUpdate(angle);

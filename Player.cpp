@@ -58,62 +58,56 @@ void Player::arUpdate(float angle)
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        dir.y -= 1;
+        dir.x -= 1;
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         dir.y += 1;
     }
-
-    if (sf::Event::MouseMoved)
+    if (angle <= 22.5 and angle >= -22.5)
     {
-        if (angle <= 30 and angle >= -30)
-        {
-            angle = 0;
-            arSetViewDir(sf::Vector2f(1, 0));
-        }
-        else if (angle < -30 and angle >= -60)
-        {
-            angle = -45;
-            arSetViewDir(sf::Vector2f(std::sqrt(2)/2, -std::sqrt(2)/2));
-        }
-        else if (angle < -60 and angle >= -120)
-        {
-            angle = -90;
-            arSetViewDir((sf::Vector2f(0, -1)));
-        }
-        else if (angle < -120 and angle > -150)
-        {
-            angle = -135;
-            arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, -std::sqrt(2)/2)));
-        }
-        else if (angle > 30 and angle <= 60)
-        {
-            angle = 45;
-            arSetViewDir(sf::Vector2f(std::sqrt(2)/2, std::sqrt(2)/2));
-        }
-        else if (angle > 60 and angle <= 120)
-        {
-            angle = 90;
-            arSetViewDir(sf::Vector2f(0, 1));
-        }
-        else if (angle > 120 and angle <= 150)
-        {
-            angle = 135;
-            arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, std::sqrt(2)/2)));
-        }
-        else
-        {
-            angle = 180;
-            arSetViewDir(sf::Vector2f(-1, 0));
-        }
+        angle = 0;
+        arSetViewDir(sf::Vector2f(1, 0));
+    }
+    else if (angle < -22.5 and angle >= -67.5)
+    {
+        angle = -45;
+        arSetViewDir(sf::Vector2f(std::sqrt(2)/2, -std::sqrt(2)/2));
+    }
+    else if (angle < -67.5 and angle >= -112.5)
+    {
+        angle = -90;
+        arSetViewDir((sf::Vector2f(0, -1)));
+    }
+    else if (angle < -112.5 and angle > -157.5)
+    {
+        angle = -135;
+        arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, -std::sqrt(2)/2)));
+    }
+    else if (angle > 22.5 and angle <= 67.5)
+    {
+        angle = 45;
+        arSetViewDir(sf::Vector2f(std::sqrt(2)/2, std::sqrt(2)/2));
+    }
+    else if (angle > 67.5 and angle <= 112.5)
+    {
+        angle = 90;
+        arSetViewDir(sf::Vector2f(0, 1));
+    }
+    else if (angle > 112.5 and angle <= 157.5)
+    {
+        angle = 135;
+        arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, std::sqrt(2)/2)));
+    }
+    else
+    {
+        angle = 180;
+        arSetViewDir(sf::Vector2f(-1, 0));
+    }
 
         arRotate(angle);
 
-        //Debug only*
-    }
-
-    arMovePlayer(dir.x * 7, dir.y * 7);
+    arMovePlayer(dir.x * 6, dir.y * 6);
     arSetPosition(m_sprite.getPosition());
 
     m_attackArc.arUpdate();
