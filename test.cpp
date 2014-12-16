@@ -31,8 +31,8 @@ int main()
     /*Game Entities*/
     //Player
     Player player(sf::Vector2f(1280 / 2, 720 / 2));
-    player.arSetTexture("player.png");
-    player.arSetSize(sf::Vector2f(50.0, 50.0));
+
+    player.arSetSize(sf::Vector2f(100.0, 100.0));
     float angle = 0.0;
 
     //Stamina bars

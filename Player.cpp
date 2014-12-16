@@ -4,12 +4,16 @@
 Player::Player()
     : m_attackArc(10.5f, 150, 100)
 {
+    arSetTexture("Front.png",true);
+    arSetTexture("Back.png",false);
 }
 
 Player::Player(sf::Vector2f initP)
     : m_attackArc(10.5f, 150, 100)
 {
     arSetPosition(initP);
+    arSetTexture("Front.png",true);
+    arSetTexture("Back.png",false);
     m_viewDir.x = 1;
     m_viewDir.y = 0;
 

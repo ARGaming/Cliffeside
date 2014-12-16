@@ -75,9 +75,12 @@ sf::Sprite Entity::arGetSprite()
     return m_sprite;
 }
 
-sf::Texture Entity::arGetTexture()
+sf::Texture Entity::arGetTexture(bool isFront)
 {
-    return m_texture;
+    if(isFront)
+        return m_texturef;
+    else
+        return m_textureb;
 }
 
 float Entity::arGetRotation()
@@ -119,17 +122,51 @@ void Entity::arSetSpeed(int newSpeed)
     m_speed = newSpeed;
 }
 
-void Entity::arSetTexture(std::string filename)
+void Entity::arSetTexture(std::string filename,bool isFront)
 {
-    m_texture.loadFromFile(filename);
-    m_texture.setSmooth(true);
-    m_sprite.setTexture(m_texture);
+    if(isFront)
+    {
+        m_texturef.loadFromFile(filename);
+        m_texturef.setSmooth(true);
+        m_sprite.setTexture(m_texturef);
+    }
+    else
+    {
+        m_textureb.loadFromFile(filename);
+        m_textureb.setSmooth(true);
+        m_sprite.setTexture(m_textureb);
+    }
+
+}
+
+void Entity::arSetScale(float x, float y)
+{
+    m_sprite.setScale(x,y);
 }
 
 void Entity::arRotate(float angle)
 {
     std::cout << angle << " ";
-    m_sprite.setRotation(angle);
+    if(angle < 0 and angle >= -90)
+    {
+        arSetTexture("Back.png",false);
+        arSetScale(1,1);
+    }
+    if(angle >= 0 and angle < 90)
+    {
+        arSetTexture("Front.png",true);
+        arSetScale(1,1);
+    }
+    if(angle < -90 and angle >= -180)
+    {
+        arSetTexture("Back.png",false);
+        arSetScale(-1,1);
+    }
+    if(angle >= 90 and angle <= 180)
+    {
+        arSetTexture("Front.png",true);
+        arSetScale(-1,1);
+    }
     m_angle = angle;
     std::cout << m_angle << std::endl;
 }
