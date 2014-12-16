@@ -127,8 +127,8 @@ void Entity::arSetTexture(std::string filename)
 
 void Entity::arRotate(float angle)
 {
-    m_angle = angle;
-    m_sprite.setRotation(m_angle);
+    m_sprite.setRotation(angle);
+    m_angle = m_sprite.getRotation();
 }
 
 void Entity::arMovePlayer(float dx, float dy)

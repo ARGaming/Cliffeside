@@ -1,12 +1,12 @@
 #include "Player.h"
 
 Player::Player()
-    : m_attackArc(0.08f, 90, 100)
+    : m_attackArc(6.5f, 150, 100)
 {
 }
 
 Player::Player(sf::Vector2f initP)
-    : m_attackArc(0.08f, 90, 100)
+    : m_attackArc(6.5f, 150, 100)
 {
     arSetPosition(initP);
     m_viewDir.x = 1;
@@ -21,7 +21,8 @@ void Player::arHandleEvent(const sf::Event& e)
     {
         if (e.mouseButton.button == sf::Mouse::Left)
         {
-            m_attackArc.arStartSwing(arGetRotation() - 45); //subtract half of range so that the arc starts before and after the view angle
+            m_attackArc.arStartSwing(arGetRotation() - (m_attackArc.arGetRange()/2)); //subtract half of range so that the arc starts before and after the view angle
+            //change 45 to something that accesses arc range?
         }
     }
 }
