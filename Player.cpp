@@ -2,14 +2,14 @@
 #include <iostream>
 
 Player::Player()
-    : m_attackArc(10.5f, 150, 100)
+    : m_attackArc(14.5f, 150, 100)
 {
     arSetTexture("Front.png",true);
     arSetTexture("Back.png",false);
 }
 
 Player::Player(sf::Vector2f initP)
-    : m_attackArc(10.5f, 150, 100)
+    : m_attackArc(14.5f, 150, 100)
 {
     arSetPosition(initP);
     arSetTexture("Front.png",true);
@@ -35,6 +35,27 @@ void Player::arHandleEvent(const sf::Event& e)
 void Player::arUpdate(float angle)
 {
     sf::Vector2f dir;
+
+    if(angle < 0 and angle >= -90)
+    {
+        arSetTexture("Back.png",false);
+        arSetScale(1,1);
+    }
+    if(angle >= 0 and angle < 90)
+    {
+        arSetTexture("Front.png",true);
+        arSetScale(1,1);
+    }
+    if(angle < -90 and angle >= -180)
+    {
+        arSetTexture("Back.png",false);
+        arSetScale(-1,1);
+    }
+    if(angle >= 90 and angle <= 180)
+    {
+        arSetTexture("Front.png",true);
+        arSetScale(-1,1);
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) and sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {

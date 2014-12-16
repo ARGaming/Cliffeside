@@ -147,26 +147,6 @@ void Entity::arSetScale(float x, float y)
 void Entity::arRotate(float angle)
 {
     std::cout << angle << " ";
-    if(angle < 0 and angle >= -90)
-    {
-        arSetTexture("Back.png",false);
-        arSetScale(1,1);
-    }
-    if(angle >= 0 and angle < 90)
-    {
-        arSetTexture("Front.png",true);
-        arSetScale(1,1);
-    }
-    if(angle < -90 and angle >= -180)
-    {
-        arSetTexture("Back.png",false);
-        arSetScale(-1,1);
-    }
-    if(angle >= 90 and angle <= 180)
-    {
-        arSetTexture("Front.png",true);
-        arSetScale(-1,1);
-    }
     m_angle = angle;
     std::cout << m_angle << std::endl;
 }
