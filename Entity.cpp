@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "Math.h"
 #include <cmath>
+#include <iostream>
 
 using namespace arMath;
 
@@ -127,8 +128,10 @@ void Entity::arSetTexture(std::string filename)
 
 void Entity::arRotate(float angle)
 {
+    std::cout << angle << " ";
     m_sprite.setRotation(angle);
-    m_angle = m_sprite.getRotation();
+    m_angle = angle;
+    std::cout << m_angle << std::endl;
 }
 
 void Entity::arMovePlayer(float dx, float dy)

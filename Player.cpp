@@ -2,12 +2,12 @@
 #include <iostream>
 
 Player::Player()
-    : m_attackArc(6.5f, 150, 100)
+    : m_attackArc(10.5f, 150, 100)
 {
 }
 
 Player::Player(sf::Vector2f initP)
-    : m_attackArc(6.5f, 150, 100)
+    : m_attackArc(10.5f, 150, 100)
 {
     arSetPosition(initP);
     m_viewDir.x = 1;

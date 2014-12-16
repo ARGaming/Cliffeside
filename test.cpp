@@ -21,9 +21,12 @@ int main()
     sf::Time deltaTime;
 
     /*Background*/
-    sf::RectangleShape bg;
-    bg.setFillColor(sf::Color::Black);
-    bg.setSize(sf::Vector2f(1280,720));
+
+    sf::Texture bgtxtr;
+    bgtxtr.loadFromFile("badBG.png");
+    sf::Sprite bg(bgtxtr);
+    bg.setScale(1.6,1.6);
+
 
     /*Game Entities*/
     //Player
@@ -39,16 +42,16 @@ int main()
     sideBar[1].setSize(sf::Vector2f(20,BAR_HEIGHT));
 
     sideBar[0].setPosition(40,50);
-    sideBar[1].setPosition(40,50 + 20);
+    sideBar[1].setPosition(40,50 + 25);
 
     sideBar[0].setRotation(270);
     sideBar[1].setRotation(270);
 
     sideBar[0].setFillColor(sf::Color(255,255,0,120));
-    sideBar[0].setOutlineColor(sf::Color(255,255,99,120));
+    sideBar[0].setOutlineColor(sf::Color(255,255,99,200));
     sideBar[0].setOutlineThickness(2);
     sideBar[1].setFillColor(sf::Color(0,0,255,120));
-    sideBar[1].setOutlineColor(sf::Color(99,99,255,120));
+    sideBar[1].setOutlineColor(sf::Color(99,99,255,200));
     sideBar[1].setOutlineThickness(2);
 
     float percental[2];
