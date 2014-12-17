@@ -15,7 +15,7 @@ public:
 
     sf::Vector2f arGetPosition();
     sf::Vector2f arGetSize();
-    sf::Texture arGetTexture();
+    sf::Texture arGetTexture(bool);
     sf::Sprite arGetSprite();
 
     int arGetHealth();
@@ -32,7 +32,8 @@ public:
     void arSetHealth(int);
     void arSetAlive(bool);
     void arSetSize(sf::Vector2f);
-    void arSetTexture(std::string);
+    void arSetTexture(std::string,bool);
+    void arSetScale(float,float);
     void arRotate(float);
     void arMovePlayer(float, float);
 
@@ -40,11 +41,13 @@ protected:
     sf::Vector2f m_pos;
     sf::Vector2f m_vSize;
     sf::Sprite m_sprite;
-    sf::Texture m_texture;
+    sf::Texture m_texturef;
+    sf::Texture m_textureb;
 
     int m_health;
 
     bool m_alive;
+    bool isFront;
 
     float m_speed;
     float m_angle;

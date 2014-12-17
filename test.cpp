@@ -5,12 +5,13 @@
 #include "Player.h"
 #include "Arc.h"
 #include "Entity.h"
+#include "Bar.h"
 
 using namespace arMath;
 
 const float BAR_HEIGHT = 300;
 const float FRAMETIME = 16.667;
-const double PI = 4.0*atan(1.0);
+
 
 int main()
 {
@@ -21,39 +22,27 @@ int main()
     sf::Time deltaTime;
 
     /*Background*/
-    sf::RectangleShape bg;
-    bg.setFillColor(sf::Color::Black);
-    bg.setSize(sf::Vector2f(1280,720));
+
+    sf::Texture bgtxtr;
+    bgtxtr.loadFromFile("badBG.png");
+    sf::Sprite bg(bgtxtr);
+    bg.setScale(1.6,1.6);
+
 
     /*Game Entities*/
     //Player
     Player player(sf::Vector2f(1280 / 2, 720 / 2));
-    player.arSetTexture("player.png");
-    player.arSetSize(sf::Vector2f(50.0, 50.0));
+
+    player.arSetSize(sf::Vector2f(100.0, 100.0));
     float angle = 0.0;
 
-    //Stamina bars
-    sf::RectangleShape sideBar[2];
+    //Bars
+    Bar staminaBar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(255, 255, 0, 200));
+    Bar manaBar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(0, 55, 255, 200));
 
-    sideBar[0].setSize(sf::Vector2f(20,BAR_HEIGHT));
-    sideBar[1].setSize(sf::Vector2f(20,BAR_HEIGHT));
+    staminaBar.arSetPosition(sf::Vector2f(20, 20));
+    manaBar.arSetPosition(sf::Vector2f(20, 50));
 
-    sideBar[0].setPosition(200,600);
-    sideBar[1].setPosition(200,600 + 20);
-
-    sideBar[0].setRotation(270);
-    sideBar[1].setRotation(270);
-
-    sideBar[0].setFillColor(sf::Color::Yellow);
-    sideBar[0].setOutlineColor(sf::Color::White);
-    sideBar[0].setOutlineThickness(2);
-    sideBar[1].setFillColor(sf::Color::Blue);
-    sideBar[1].setOutlineColor(sf::Color::White);
-    sideBar[1].setOutlineThickness(2);
-
-    float percental[2];
-    percental[0] = .001;
-    percental[1] = .001;
 
     /*Game Loop*/
     while(gWind.isOpen())
@@ -72,13 +61,9 @@ int main()
                 }
             }
 
-
-            if (eventH.type == sf::Event::MouseMoved)
-            {
-                //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
-                sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
-                angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
-            }
+            //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
+            sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
+            angle = std::atan2(mousePos.y - player.arGetPosition().y, mousePos.x - player.arGetPosition().x) * (180/PI);
 
             if (eventH.type == sf::Event::Closed)
             {
@@ -90,33 +75,9 @@ int main()
         //Update
         while (deltaTime.asMilliseconds() > FRAMETIME)
         {
-            if(percental[0] >= 1)
-            {
-            }
-            else if(percental[0] + .01667 >= 1)
-            {
-                percental[0] = 1;
-            }
-            else
-            {
-                percental[0] += .01667;
-            }
-            if(percental[1] >= 1)
-            {
-            }
-            else if(percental[1] + (.01667/2) >= 1)
-            {
-                percental[1] = 1;
-            }
-            else
-            {
-                percental[1] += (.01667/2);
-            }
-
             player.arUpdate(angle);
-
-            sideBar[0].setScale(sf::Vector2f(1,percental[0]));
-            sideBar[1].setScale(sf::Vector2f(1,percental[1]));
+            staminaBar.arFill(0.01677f); //1 second at 60 fps
+            manaBar.arFill(0.01677f/4); //4 seconds at 60 fps
 
             deltaTime -= sf::milliseconds(FRAMETIME);
         }
@@ -126,8 +87,8 @@ int main()
         gWind.draw(bg);
         player.draw(gWind);
 
-        gWind.draw(sideBar[0]);
-        gWind.draw(sideBar[1]);
+        gWind.draw(staminaBar);
+        gWind.draw(manaBar);
 
         gWind.display();
 
