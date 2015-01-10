@@ -1,6 +1,7 @@
 #include "Arc.h"
 
 #include <iostream>
+#include <cmath>
 
 Arc::Arc(float speed, float range, float length)
     : m_speed(speed)

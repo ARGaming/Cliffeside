@@ -2,6 +2,8 @@
 #define MATH_H
 
 #include<SFML/Graphics.hpp>
+#include <iostream>
+#include <cmath>
 
 namespace arMath
 {

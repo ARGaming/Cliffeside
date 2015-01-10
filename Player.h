@@ -8,7 +8,9 @@ class Player : public Entity
 {
 public:
     Player();
-    Player(sf::Vector2f);
+    Player(sf::Vector2f, sf::Vector2f);
+
+    float angle;
 
     void arHandleEvent(const sf::Event& e);
     void arUpdate(float angle);
@@ -23,6 +25,7 @@ public:
 private:
     float m_stamina;
     sf::Vector2f m_viewDir;
+
 
 
     Arc m_attackArc;

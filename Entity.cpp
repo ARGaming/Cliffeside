@@ -146,9 +146,7 @@ void Entity::arSetScale(float x, float y)
 
 void Entity::arRotate(float angle)
 {
-    std::cout << angle << " ";
     m_angle = angle;
-    std::cout << m_angle << std::endl;
 }
 
 void Entity::arMovePlayer(float dx, float dy)
