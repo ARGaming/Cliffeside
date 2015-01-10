@@ -16,15 +16,16 @@ const float FRAMETIME = 16.667;
 int main()
 {
     sf::RenderWindow gWind(sf::VideoMode(1280,720),"Grid Test");
+    gWind.setFramerateLimit(60);
     sf::Event eventH;
     sf::Clock gameTime;
     sf::Clock loopTime;
     sf::Time deltaTime;
 
     /*Background*/
-
     sf::Texture bgtxtr;
     bgtxtr.loadFromFile("badBG.png");
+    bgtxtr.setSmooth(true);
     sf::Sprite bg(bgtxtr);
     bg.setScale(1.6,1.6);
 

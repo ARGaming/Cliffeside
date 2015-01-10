@@ -1,16 +1,23 @@
 #include "Player.h"
 #include <iostream>
+#include <cmath>
+
 
 Player::Player()
     : m_attackArc(14.5f, 150, 100)
 {
+    arSetSize(sf::Vector2f(100.0, 100.0));
     arSetTexture("Front.png",true);
     arSetTexture("Back.png",false);
+
+    angle = 0.0;
+
 }
 
-Player::Player(sf::Vector2f initP)
+Player::Player(sf::Vector2f initP, sf::Vector2f playerSize)
     : m_attackArc(14.5f, 150, 100)
 {
+    arSetSize(playerSize);
     arSetPosition(initP);
     arSetTexture("Front.png",true);
     arSetTexture("Back.png",false);
@@ -18,6 +25,8 @@ Player::Player(sf::Vector2f initP)
     m_viewDir.y = 0;
 
     m_attackArc.arSetPosition(initP);
+
+    angle = 0.0;
 }
 
 void Player::arHandleEvent(const sf::Event& e)
