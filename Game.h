@@ -21,6 +21,8 @@ public:
 
     const float BAR_HEIGHT = 300;
     const float FRAMETIME = 16.667;
+    const float WINDOW_WIDTH = 600;
+    const float WINDOW_HEIGHT = 400;
     float angle;
 
     sf::Event eventH;
@@ -29,10 +31,14 @@ public:
     sf::Time deltaTime;
     sf::RenderWindow gWind;
     sf::RenderStates states;
+    sf::View cameraView;
 
     bool gameRunning;
 
-    WorldRenderer* world;
+    //Entities
+    sf::Texture bgtxtr; //Name will change
+    sf::Sprite bg;
+
     Player* player;
     Bar* staminaBar;
     Bar* manaBar;
