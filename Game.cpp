@@ -6,16 +6,25 @@ Game::Game()
 {
     std::cout << "Engine started...\n";
 
-    gWind.create(sf::VideoMode(1280, 720), "Cliffeside");
+    gWind.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Cliffeside");
+    cameraView.setCenter(300, 200);
+    cameraView.setSize(600, 400);
+    gWind.setView(cameraView);
+
     gameRunning = true;
 
     std::cout << "Game started...\n";
     angle = 0.0;
 
-    player = new Player(sf::Vector2f(1280 / 2, 720 / 2), sf::Vector2f(100.0, 100.0));
+    player = new Player(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), sf::Vector2f(100.0, 100.0));
     staminaBar = new Bar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(255, 255, 0, 200));
     manaBar = new Bar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(0, 55, 255, 200));
-    world = new WorldRenderer("badBG.png");
+
+    //Background
+    bgtxtr.loadFromFile("badBG.png");
+    bgtxtr.setSmooth(true);
+    bg.setTexture(bgtxtr);
+    bg.setScale(1.6, 1.6);
 
     staminaBar->arSetPosition(sf::Vector2f(20, 20));
     manaBar->arSetPosition(sf::Vector2f(20, 50));
@@ -68,7 +77,8 @@ void Game::arRun()
             sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
             angle = std::atan2(mousePos.y - player->arGetPosition().y, mousePos.x - player->arGetPosition().x) * (180/PI);
 
-            player->arUpdate(angle);
+            player->arUpdate(angle, cameraView);
+            gWind.setView(cameraView);
 
             staminaBar->arFill(0.01677f); //1 second at 60 fps
             manaBar->arFill(0.01677f/4); //4 seconds at 60 fps
@@ -76,10 +86,14 @@ void Game::arRun()
             deltaTime -= sf::milliseconds(FRAMETIME);
         }
 
+        staminaBar->arUpdate(player, "stamina");
+        manaBar->arUpdate(player, "mana");
+
+
         //Draw
         gWind.clear();
 
-        world->draw(gWind);
+        gWind.draw(bg);
         player->draw(gWind);
         staminaBar->draw(gWind, states);
         manaBar->draw(gWind, states);

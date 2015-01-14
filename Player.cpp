@@ -41,7 +41,7 @@ void Player::arHandleEvent(const sf::Event& e)
     }
 }
 
-void Player::arUpdate(float angle)
+void Player::arUpdate(float angle, sf::View& view)
 {
     sf::Vector2f dir;
 
@@ -139,9 +139,10 @@ void Player::arUpdate(float angle)
         arSetViewDir(sf::Vector2f(-1, 0));
     }
 
-        arRotate(angle);
+    arRotate(angle);
 
     arMovePlayer(dir.x * 6, dir.y * 6);
+    view.move(dir.x * 6, dir.y * 6);
     arSetPosition(m_sprite.getPosition());
 
     m_attackArc.arUpdate();

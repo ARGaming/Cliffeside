@@ -2,6 +2,8 @@
 #define BAR_H
 
 #include <SFML/Graphics.hpp>
+#include "Player.h"
+#include <string>
 
 class Bar : public sf::Drawable
 {
@@ -9,6 +11,7 @@ public:
     Bar(sf::Vector2f size, sf::Color color);
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
+    void arUpdate(Player* player, std::string type);
     void arSetPosition(sf::Vector2f pos);
     void arFill(float percentage);
 

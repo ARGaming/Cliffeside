@@ -13,7 +13,7 @@ public:
     float angle;
 
     void arHandleEvent(const sf::Event& e);
-    void arUpdate(float angle);
+    void arUpdate(float angle, sf::View& view);
     void draw(sf::RenderTarget& target);
 
     float arGetStamina();

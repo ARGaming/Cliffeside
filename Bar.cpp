@@ -1,6 +1,7 @@
 #include "Bar.h"
 
 #include <cmath>
+#include <iostream>
 
 Bar::Bar(sf::Vector2f size, sf::Color color)
 {
@@ -22,6 +23,20 @@ void Bar::arFill(float percentage)
     m_percentage = std::max(0.f, m_percentage);
 
     m_shape.setScale(m_percentage, 1.f);
+}
+void Bar::arUpdate(Player* player, std::string type)
+{
+    if (type.compare("mana") == 0)
+    {
+        m_shape.setPosition(player->arGetPosition().x - 280, player->arGetPosition().y - 180);
+    }
+    else if (type.compare("stamina") == 0)
+    {
+        m_shape.setPosition(player->arGetPosition().x - 280, player->arGetPosition().y - 150);
+    }
+    else {
+
+    }
 }
 
 void Bar::draw(sf::RenderTarget& target, sf::RenderStates states) const
