@@ -48,7 +48,7 @@ void Arc::arStartSwing(float angle)
 
 void Arc::arSetPosition(const sf::Vector2f& pos)
 {
-    m_collider.setPosition(pos);
+    m_collider.setPosition(pos.x - 25, pos.y - 25);
 }
 
 float Arc::arGetRange()
@@ -71,8 +71,7 @@ std::vector<sf::Vector2f> Arc::arGetCollisionPoints()
     }
 
     //collider Size X is the length of the arc
-    collisionPoints.push_back(sf::Vector2f(m_collider.getPosition().x + normAngleVec.x * m_collider.getSize().x,
-                                           m_collider.getPosition().y + normAngleVec.y * m_collider.getSize().x));
+    collisionPoints.push_back(sf::Vector2f(m_collider.getPosition().x + normAngleVec.x * m_collider.getSize().x, m_collider.getPosition().y + normAngleVec.y * m_collider.getSize().x));
 
     return collisionPoints;
 }

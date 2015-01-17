@@ -4,7 +4,7 @@
 #include<SFML/Graphics.hpp>
 #include <string>
 
-class Entity : sf::Transformable
+class Entity
 {
 public:
     Entity();
@@ -27,15 +27,21 @@ public:
     float arGetAngle();
 
     void arSetSpeed(int speed);
-    void arSetPosition(sf::Vector2f);
+    void arSetPosition(sf::Vector2f posDelta);
     void arSetAngle(float angle);
-    void arSetHealth(int);
+    void arSetHealth(int newHealth);
     void arSetAlive(bool);
     void arSetSize(sf::Vector2f);
-    void arSetTexture(std::string,bool);
-    void arSetScale(float,float);
-    void arRotate(float);
-    void arMovePlayer(float, float);
+    void arSetTexture(std::string filename, bool isFront);
+    void arSetScale(float x, float y);
+    void arRotate(float angle);
+    void arMovePlayer(float dx, float dy);
+
+    virtual void draw(sf::RenderTarget& target) = 0;
+
+    int arGetRenderLayer();
+
+    enum LayerType {EntityRenderLayer = 1, BackgroundRenderLayer = 0, ForegroundRenderLayer = 2};
 
 protected:
     sf::Vector2f m_pos;
@@ -51,6 +57,8 @@ protected:
 
     float m_speed;
     float m_angle;
+    int m_renderLayer;
+
 };
 
 

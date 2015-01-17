@@ -9,6 +9,8 @@ Bar::Bar(sf::Vector2f size, sf::Color color)
     m_shape.setFillColor(color);
     m_shape.setOutlineColor(sf::Color::Black);
     m_shape.setOutlineThickness(2);
+
+    m_renderLayer = ForegroundRenderLayer;
 }
 
 void Bar::arSetPosition(sf::Vector2f pos)
@@ -28,18 +30,18 @@ void Bar::arUpdate(Player* player, std::string type)
 {
     if (type.compare("mana") == 0)
     {
-        m_shape.setPosition(player->arGetPosition().x - 280, player->arGetPosition().y - 180);
+        m_shape.setPosition(player->arGetPosition().x - 340, player->arGetPosition().y - 180);
     }
     else if (type.compare("stamina") == 0)
     {
-        m_shape.setPosition(player->arGetPosition().x - 280, player->arGetPosition().y - 150);
+        m_shape.setPosition(player->arGetPosition().x - 340, player->arGetPosition().y - 150);
     }
     else {
 
     }
 }
 
-void Bar::draw(sf::RenderTarget& target, sf::RenderStates states) const
+void Bar::draw(sf::RenderTarget& target)
 {
-    target.draw(m_shape, states);
+    target.draw(m_shape);
 }
