@@ -5,11 +5,11 @@
 #include "Player.h"
 #include <string>
 
-class Bar : public sf::Drawable
+class Bar : public Entity
 {
 public:
     Bar(sf::Vector2f size, sf::Color color);
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    void draw(sf::RenderTarget& target) override;
 
     void arUpdate(Player* player, std::string type);
     void arSetPosition(sf::Vector2f pos);

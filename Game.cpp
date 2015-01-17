@@ -1,8 +1,8 @@
 #include "Game.h"
-
 using namespace arMath;
 
-Game::Game()
+Game::Game() :
+    mGameEntities()
 {
     std::cout << "Engine started...\n";
 
@@ -19,6 +19,12 @@ Game::Game()
     player = new Player(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), sf::Vector2f(100.0, 100.0));
     staminaBar = new Bar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(255, 255, 0, 200));
     manaBar = new Bar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(0, 55, 255, 200));
+
+    //Add entities to the mGameEntities vector to avoid individual draw calls (see Game::drawObjects function bellow)
+    mGameEntities.push_back(player);
+    mGameEntities.push_back(staminaBar);
+    mGameEntities.push_back(manaBar);
+
 
     //Background
     bgtxtr.loadFromFile("badBG.png");
@@ -94,9 +100,8 @@ void Game::arRun()
         gWind.clear();
 
         gWind.draw(bg);
-        player->draw(gWind);
-        staminaBar->draw(gWind, states);
-        manaBar->draw(gWind, states);
+
+        drawObjects(gWind);
 
         gWind.display();
 
@@ -104,6 +109,39 @@ void Game::arRun()
         deltaTime += loopTime.restart();
     }
 }
+
+    void Game::drawObjects(sf::RenderTarget& target)
+    {
+
+        //Draws background objects
+        for (Entity* gameEntity : mGameEntities)
+        {
+            if (gameEntity->arGetRenderLayer() == gameEntity->BackgroundRenderLayer)
+            {
+                gameEntity->draw(target);
+            }
+        }
+
+        //Draws Game objects in the Entity Render Layer
+        for (Entity* gameEntity : mGameEntities)
+        {
+            if (gameEntity->arGetRenderLayer() == gameEntity->EntityRenderLayer)
+            {
+                gameEntity->draw(target);
+            }
+        }
+
+        //Draws Game objects in the Foreground Render Layer Ex. like UI, Stamina/Mana Bars
+        for (Entity* gameEntity : mGameEntities)
+        {
+            if (gameEntity->arGetRenderLayer() == gameEntity->ForegroundRenderLayer)
+            {
+                gameEntity->draw(target);
+            }
+
+        }
+    }
+
 
 
 

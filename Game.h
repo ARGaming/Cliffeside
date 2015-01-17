@@ -9,7 +9,7 @@
 #include "Arc.h"
 #include "Entity.h"
 #include "Bar.h"
-#include "WorldRenderer.h"
+#include "Entity.h"
 
 
 class Game
@@ -21,7 +21,7 @@ public:
 
     const float BAR_HEIGHT = 300;
     const float FRAMETIME = 16.667;
-    const float WINDOW_WIDTH = 600;
+    const float WINDOW_WIDTH = 700;
     const float WINDOW_HEIGHT = 400;
     float angle;
 
@@ -33,6 +33,10 @@ public:
     sf::RenderStates states;
     sf::View cameraView;
 
+    std::vector<Entity*> mGameEntities;
+
+    void drawObjects(sf::RenderTarget& target);
+
     bool gameRunning;
 
     //Entities
@@ -42,6 +46,8 @@ public:
     Player* player;
     Bar* staminaBar;
     Bar* manaBar;
+
+    //enum LayerType {EntityRenderLayer = 1, BackgroundRenderLayer = 0, ForegroundRenderLayer = 2};
 
 };
 

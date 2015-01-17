@@ -55,6 +55,7 @@
 		</Linker>
 		<Unit filename="Arc.cpp" />
 		<Unit filename="Arc.h" />
+		<Unit filename="Back.png" />
 		<Unit filename="Bar.cpp" />
 		<Unit filename="Bar.h" />
 		<Unit filename="Entity.cpp" />
@@ -65,8 +66,6 @@
 		<Unit filename="Math.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
-		<Unit filename="WorldRenderer.cpp" />
-		<Unit filename="WorldRenderer.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

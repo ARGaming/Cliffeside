@@ -7,14 +7,14 @@
 class Player : public Entity
 {
 public:
-    Player();
     Player(sf::Vector2f, sf::Vector2f);
 
-    float angle;
+
 
     void arHandleEvent(const sf::Event& e);
     void arUpdate(float angle, sf::View& view);
-    void draw(sf::RenderTarget& target);
+    virtual void draw(sf::RenderTarget& target) override;
+    void arPlayerBoundariesCollision(int world_width, int world_height);
 
     float arGetStamina();
     sf::Vector2f arGetBodyCenter();
@@ -22,11 +22,14 @@ public:
 
     void arSetViewDir(sf::Vector2f);
 
+
 private:
     float m_stamina;
     sf::Vector2f m_viewDir;
+    float m_angle;
 
-
+    void arHandleViewingDir();
+    void arHandleTextureDir();
 
     Arc m_attackArc;
 };

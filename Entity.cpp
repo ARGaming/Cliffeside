@@ -5,6 +5,7 @@
 
 using namespace arMath;
 
+
 Entity::Entity()
 {
     m_pos.x = 0;
@@ -19,7 +20,6 @@ Entity::Entity(sf::Vector2f initP)
     m_pos.y = initP.y;
 
     m_sprite.setPosition(m_pos);
-    m_sprite.setOrigin(30, 25);
 }
 
 void Entity::lockMove(sf::Vector2f movVector)
@@ -88,6 +88,11 @@ float Entity::arGetRotation()
     return m_angle;
 }
 
+int Entity::arGetRenderLayer()
+{
+    return m_renderLayer;
+}
+
 
 void Entity::arSetPosition(sf::Vector2f posDelta)
 {
@@ -139,10 +144,13 @@ void Entity::arSetTexture(std::string filename,bool isFront)
 
 }
 
+
+
 void Entity::arSetScale(float x, float y)
 {
     m_sprite.setScale(x,y);
 }
+
 
 void Entity::arRotate(float angle)
 {

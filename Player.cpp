@@ -3,17 +3,6 @@
 #include <cmath>
 
 
-Player::Player()
-    : m_attackArc(14.5f, 150, 100)
-{
-    arSetSize(sf::Vector2f(100.0, 100.0));
-    arSetTexture("Front.png",true);
-    arSetTexture("Back.png",false);
-
-    angle = 0.0;
-
-}
-
 Player::Player(sf::Vector2f initP, sf::Vector2f playerSize)
     : m_attackArc(14.5f, 150, 100)
 {
@@ -26,7 +15,10 @@ Player::Player(sf::Vector2f initP, sf::Vector2f playerSize)
 
     m_attackArc.arSetPosition(initP);
 
-    angle = 0.0;
+    m_angle = 0.0;
+
+    m_renderLayer = EntityRenderLayer;
+
 }
 
 void Player::arHandleEvent(const sf::Event& e)
@@ -35,7 +27,7 @@ void Player::arHandleEvent(const sf::Event& e)
     {
         if (e.mouseButton.button == sf::Mouse::Left)
         {
-            m_attackArc.arStartSwing(arGetRotation() - (m_attackArc.arGetRange()/2)); //subtract half of range so that the arc starts before and after the view angle
+            m_attackArc.arStartSwing(arGetRotation() - (m_attackArc.arGetRange()/2)); //subtract half of range so that the arc starts before and after the view m_angle
             //change 45 to something that accesses arc range?
         }
     }
@@ -44,28 +36,12 @@ void Player::arHandleEvent(const sf::Event& e)
 void Player::arUpdate(float angle, sf::View& view)
 {
     sf::Vector2f dir;
+    m_angle = angle;
 
-    if(angle < 0 and angle >= -90)
-    {
-        arSetTexture("Back.png",false);
-        arSetScale(1,1);
-    }
-    if(angle >= 0 and angle < 90)
-    {
-        arSetTexture("Front.png",true);
-        arSetScale(1,1);
-    }
-    if(angle < -90 and angle >= -180)
-    {
-        arSetTexture("Back.png",false);
-        arSetScale(-1,1);
-    }
-    if(angle >= 90 and angle <= 180)
-    {
-        arSetTexture("Front.png",true);
-        arSetScale(-1,1);
-    }
+    //Handle the textures for the player related to its viewing direction
+    arHandleTextureDir();
 
+    //Handle input events
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) and sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         dir.x -= .65; dir.y += .65;
@@ -98,48 +74,11 @@ void Player::arUpdate(float angle, sf::View& view)
     {
         dir.y += 1;
     }
-    if (angle <= 22.5 and angle >= -22.5)
-    {
-        angle = 0;
-        arSetViewDir(sf::Vector2f(1, 0));
-    }
-    else if (angle < -22.5 and angle >= -67.5)
-    {
-        angle = -45;
-        arSetViewDir(sf::Vector2f(std::sqrt(2)/2, -std::sqrt(2)/2));
-    }
-    else if (angle < -67.5 and angle >= -112.5)
-    {
-        angle = -90;
-        arSetViewDir((sf::Vector2f(0, -1)));
-    }
-    else if (angle < -112.5 and angle > -157.5)
-    {
-        angle = -135;
-        arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, -std::sqrt(2)/2)));
-    }
-    else if (angle > 22.5 and angle <= 67.5)
-    {
-        angle = 45;
-        arSetViewDir(sf::Vector2f(std::sqrt(2)/2, std::sqrt(2)/2));
-    }
-    else if (angle > 67.5 and angle <= 112.5)
-    {
-        angle = 90;
-        arSetViewDir(sf::Vector2f(0, 1));
-    }
-    else if (angle > 112.5 and angle <= 157.5)
-    {
-        angle = 135;
-        arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, std::sqrt(2)/2)));
-    }
-    else
-    {
-        angle = 180;
-        arSetViewDir(sf::Vector2f(-1, 0));
-    }
 
-    arRotate(angle);
+    //Handle player viewing direction vector
+    arHandleViewingDir();
+
+    arRotate(m_angle);
 
     arMovePlayer(dir.x * 6, dir.y * 6);
     view.move(dir.x * 6, dir.y * 6);
@@ -164,6 +103,86 @@ void Player::draw(sf::RenderTarget& target)
         target.draw(cs);
     }
 }
+
+void Player::arHandleTextureDir()
+{
+    if(m_angle < 0 and m_angle >= -90)
+    {
+        arSetTexture("Back.png",false);
+        arSetScale(1,1);
+    }
+    if(m_angle >= 0 and m_angle < 90)
+    {
+        arSetTexture("Front.png",true);
+        arSetScale(1,1);
+    }
+    if(m_angle < -90 and m_angle >= -180)
+    {
+        arSetTexture("Back.png",false);
+        arSetScale(-1,1);
+    }
+    if(m_angle >= 90 and m_angle <= 180)
+    {
+        arSetTexture("Front.png",true);
+        arSetScale(-1,1);
+    }
+}
+
+void Player::arHandleViewingDir()
+{
+    if (m_angle <= 22.5 and m_angle >= -22.5)
+    {
+        m_angle = 0;
+        arSetViewDir(sf::Vector2f(1, 0));
+    }
+    else if (m_angle < -22.5 and m_angle >= -67.5)
+    {
+        m_angle = -45;
+        arSetViewDir(sf::Vector2f(std::sqrt(2)/2, -std::sqrt(2)/2));
+    }
+    else if (m_angle < -67.5 and m_angle >= -112.5)
+    {
+        m_angle = -90;
+        arSetViewDir((sf::Vector2f(0, -1)));
+    }
+    else if (m_angle < -112.5 and m_angle > -157.5)
+    {
+        m_angle = -135;
+        arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, -std::sqrt(2)/2)));
+    }
+    else if (m_angle > 22.5 and m_angle <= 67.5)
+    {
+        m_angle = 45;
+        arSetViewDir(sf::Vector2f(std::sqrt(2)/2, std::sqrt(2)/2));
+    }
+    else if (m_angle > 67.5 and m_angle <= 112.5)
+    {
+        m_angle = 90;
+        arSetViewDir(sf::Vector2f(0, 1));
+    }
+    else if (m_angle > 112.5 and m_angle <= 157.5)
+    {
+        m_angle = 135;
+        arSetViewDir((sf::Vector2f(-std::sqrt(2)/2, std::sqrt(2)/2)));
+    }
+    else
+    {
+        m_angle = 180;
+        arSetViewDir(sf::Vector2f(-1, 0));
+    }
+}
+
+void Player::arPlayerBoundariesCollision(int world_width, int world_height)
+{
+    if (arGetPosition().x <= 50 || arGetPosition().x >= world_width - arGetSprite().getPosition().x)
+    {
+        sf::Vector2f pos;
+        pos.x = arGetPosition().x;
+        pos.y = arGetPosition().y;
+        arSetPosition(pos);
+    }
+}
+
 
 float Player::arGetStamina()
 {
