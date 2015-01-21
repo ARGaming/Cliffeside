@@ -53,20 +53,27 @@
 			<Add library="dxguid" />
 			<Add directory="C:/SFML-2.1/lib" />
 		</Linker>
-		<Unit filename="Arc.cpp" />
-		<Unit filename="Arc.h" />
 		<Unit filename="Back.png" />
-		<Unit filename="Bar.cpp" />
-		<Unit filename="Bar.h" />
-		<Unit filename="Entity.cpp" />
-		<Unit filename="Entity.h" />
-		<Unit filename="Game.cpp" />
-		<Unit filename="Game.h" />
-		<Unit filename="Math.cpp" />
-		<Unit filename="Math.h" />
-		<Unit filename="Player.cpp" />
-		<Unit filename="Player.h" />
-		<Unit filename="main.cpp" />
+		<Unit filename="src/Assets/Back.png" />
+		<Unit filename="src/Assets/Front.png" />
+		<Unit filename="src/Assets/badBG.png" />
+		<Unit filename="src/Components/IntersectData.cpp" />
+		<Unit filename="src/Components/IntersectData.h" />
+		<Unit filename="src/Components/PhysicsHandler.cpp" />
+		<Unit filename="src/Components/PhysicsHandler.h" />
+		<Unit filename="src/Core/Math.cpp" />
+		<Unit filename="src/Core/Math.h" />
+		<Unit filename="src/Game.cpp" />
+		<Unit filename="src/Game.h" />
+		<Unit filename="src/GameObjects/Arc.cpp" />
+		<Unit filename="src/GameObjects/Arc.h" />
+		<Unit filename="src/GameObjects/Bar.cpp" />
+		<Unit filename="src/GameObjects/Bar.h" />
+		<Unit filename="src/GameObjects/Entity.cpp" />
+		<Unit filename="src/GameObjects/Entity.h" />
+		<Unit filename="src/GameObjects/Player.cpp" />
+		<Unit filename="src/GameObjects/Player.h" />
+		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

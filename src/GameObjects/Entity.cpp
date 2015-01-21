@@ -1,5 +1,5 @@
 #include "Entity.h"
-#include "Math.h"
+#include "../Core/Math.h"
 #include <cmath>
 #include <iostream>
 

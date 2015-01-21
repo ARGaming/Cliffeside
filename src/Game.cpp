@@ -34,6 +34,7 @@ Game::Game() :
 
     staminaBar->arSetPosition(sf::Vector2f(20, 20));
     manaBar->arSetPosition(sf::Vector2f(20, 50));
+
 }
 
 Game::~Game()
@@ -76,12 +77,14 @@ void Game::arRun()
             }
         }
 
+        //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
+        sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
+        angle = std::atan2(mousePos.y - player->arGetPosition().y, mousePos.x - player->arGetPosition().x) * (180/PI);
+
         //Update
         while (deltaTime.asMilliseconds() > FRAMETIME)
         {
-            //the angle of ration is the atan2 of the Vector(Distance between mouse and sprite) * (180/PI) to turn it into degrees (atan2 returns radians)
-            sf::Vector2i mousePos = sf::Mouse::getPosition(gWind);
-            angle = std::atan2(mousePos.y - player->arGetPosition().y, mousePos.x - player->arGetPosition().x) * (180/PI);
+
 
             player->arUpdate(angle, cameraView);
             gWind.setView(cameraView);

@@ -4,12 +4,11 @@
 #include<iostream>
 #include<SFML/Audio.hpp>
 #include<SFML/Graphics.hpp>
-#include "Math.h"
-#include "Player.h"
-#include "Arc.h"
-#include "Entity.h"
-#include "Bar.h"
-#include "Entity.h"
+#include "Core/Math.h"
+#include "GameObjects/Player.h"
+#include "GameObjects/Arc.h"
+#include "GameObjects/Bar.h"
+#include "Components/BoundCircle.h"
 
 
 class Game
@@ -48,6 +47,7 @@ public:
     Bar* manaBar;
 
     //enum LayerType {EntityRenderLayer = 1, BackgroundRenderLayer = 0, ForegroundRenderLayer = 2};
+
 
 };
 
