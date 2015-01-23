@@ -18,7 +18,6 @@ Entity::Entity(sf::Vector2f initP)
 {
     m_pos.x = initP.x;
     m_pos.y = initP.y;
-
     m_sprite.setPosition(m_pos);
 }
 
@@ -91,6 +90,11 @@ float Entity::arGetRotation()
 int Entity::arGetRenderLayer()
 {
     return m_renderLayer;
+}
+
+std::vector<PhysicsBody*> Entity::arGetBodyParts()
+{
+    return bound_body_parts;
 }
 
 

@@ -8,7 +8,7 @@
 #include "GameObjects/Player.h"
 #include "GameObjects/Arc.h"
 #include "GameObjects/Bar.h"
-#include "Components/BoundCircle.h"
+#include "GameObjects/World.h"
 
 
 class Game
@@ -18,7 +18,7 @@ public:
     ~Game();
     void arRun();
 
-    const float BAR_HEIGHT = 300;
+    const float BAR_WIDTH = 200;
     const float FRAMETIME = 16.667;
     const float WINDOW_WIDTH = 700;
     const float WINDOW_HEIGHT = 400;
@@ -30,21 +30,18 @@ public:
     sf::Time deltaTime;
     sf::RenderWindow gWind;
     sf::RenderStates states;
-    sf::View cameraView;
 
     std::vector<Entity*> mGameEntities;
+    std::vector<std::vector<PhysicsBody*>> mPhysicsWorldBodies;
 
     void drawObjects(sf::RenderTarget& target);
 
     bool gameRunning;
 
-    //Entities
-    sf::Texture bgtxtr; //Name will change
-    sf::Sprite bg;
-
     Player* player;
     Bar* staminaBar;
     Bar* manaBar;
+    World* world;
 
     //enum LayerType {EntityRenderLayer = 1, BackgroundRenderLayer = 0, ForegroundRenderLayer = 2};
 

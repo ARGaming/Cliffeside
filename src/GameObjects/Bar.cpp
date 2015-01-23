@@ -11,6 +11,7 @@ Bar::Bar(sf::Vector2f size, sf::Color color)
     m_shape.setOutlineThickness(2);
 
     m_renderLayer = ForegroundRenderLayer;
+
 }
 
 void Bar::arSetPosition(sf::Vector2f pos)

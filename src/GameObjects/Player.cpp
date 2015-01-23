@@ -19,6 +19,11 @@ Player::Player(sf::Vector2f initP, sf::Vector2f playerSize)
 
     m_renderLayer = EntityRenderLayer;
 
+    m_id = "Player";
+    m_bound_circle.setRadius(25);
+
+    bound_body_parts.push_back(physicsBody);
+
 }
 
 void Player::arHandleEvent(const sf::Event& e)
@@ -35,6 +40,10 @@ void Player::arHandleEvent(const sf::Event& e)
 
 void Player::arUpdate(float angle, sf::View& view)
 {
+    m_bound_circle.setOutlineColor(sf::Color::Red);
+    m_bound_circle.setOutlineThickness(1);
+    physicsBody = new PhysicsBody(m_bound_circle, m_id);
+
     sf::Vector2f dir;
     m_angle = angle;
 
@@ -86,10 +95,17 @@ void Player::arUpdate(float angle, sf::View& view)
 
     m_attackArc.arUpdate();
     m_attackArc.arSetPosition(m_sprite.getPosition());
+
+    //Position of the bound circle
+    m_bound_circle.setPosition(arGetPosition().x - 25, arGetPosition().y - 25);
+
 }
 
 void Player::draw(sf::RenderTarget& target)
 {
+    //Debug only
+    target.draw(m_bound_circle);
+
     target.draw(arGetSprite());
     target.draw(m_attackArc);
 
@@ -102,6 +118,8 @@ void Player::draw(sf::RenderTarget& target)
         cs.setPosition(*it);
         target.draw(cs);
     }
+
+
 }
 
 void Player::arHandleTextureDir()

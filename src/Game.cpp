@@ -7,30 +7,27 @@ Game::Game() :
     std::cout << "Engine started...\n";
 
     gWind.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Cliffeside");
-    cameraView.setCenter(300, 200);
-    cameraView.setSize(600, 400);
-    gWind.setView(cameraView);
 
     gameRunning = true;
 
     std::cout << "Game started...\n";
     angle = 0.0;
 
-    player = new Player(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), sf::Vector2f(100.0, 100.0));
-    staminaBar = new Bar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(255, 255, 0, 200));
-    manaBar = new Bar(sf::Vector2f(BAR_HEIGHT, 20), sf::Color(0, 55, 255, 200));
+    //Initialize game objects
+    world = new World(gWind);
+    player = new Player(sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), sf::Vector2f(50.0, 50.0));
+    staminaBar = new Bar(sf::Vector2f(BAR_WIDTH, 20), sf::Color(255, 255, 0, 200));
+    manaBar = new Bar(sf::Vector2f(BAR_WIDTH, 20), sf::Color(0, 55, 255, 200));
+
+    //Add all physics bodies from each entity
+    mPhysicsWorldBodies.push_back(player->arGetBodyParts());
+
 
     //Add entities to the mGameEntities vector to avoid individual draw calls (see Game::drawObjects function bellow)
     mGameEntities.push_back(player);
     mGameEntities.push_back(staminaBar);
     mGameEntities.push_back(manaBar);
 
-
-    //Background
-    bgtxtr.loadFromFile("badBG.png");
-    bgtxtr.setSmooth(true);
-    bg.setTexture(bgtxtr);
-    bg.setScale(1.6, 1.6);
 
     staminaBar->arSetPosition(sf::Vector2f(20, 20));
     manaBar->arSetPosition(sf::Vector2f(20, 50));
@@ -86,8 +83,8 @@ void Game::arRun()
         {
 
 
-            player->arUpdate(angle, cameraView);
-            gWind.setView(cameraView);
+            player->arUpdate(angle, world->arGetCameraView());
+            gWind.setView(world->arGetCameraView());
 
             staminaBar->arFill(0.01677f); //1 second at 60 fps
             manaBar->arFill(0.01677f/4); //4 seconds at 60 fps
@@ -102,7 +99,7 @@ void Game::arRun()
         //Draw
         gWind.clear();
 
-        gWind.draw(bg);
+        world->arRender(gWind);
 
         drawObjects(gWind);
 
