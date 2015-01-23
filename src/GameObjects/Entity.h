@@ -3,6 +3,7 @@
 
 #include<SFML/Graphics.hpp>
 #include <string>
+#include "../Components/PhysicsBody.h"
 
 class Entity
 {
@@ -37,11 +38,15 @@ public:
     void arRotate(float angle);
     void arMovePlayer(float dx, float dy);
 
+
     virtual void draw(sf::RenderTarget& target) = 0;
 
     int arGetRenderLayer();
 
     enum LayerType {EntityRenderLayer = 1, BackgroundRenderLayer = 0, ForegroundRenderLayer = 2};
+
+    std::vector<PhysicsBody*> arGetBodyParts();
+
 
 protected:
     sf::Vector2f m_pos;
@@ -58,6 +63,10 @@ protected:
     float m_speed;
     float m_angle;
     int m_renderLayer;
+
+    PhysicsBody* physicsBody;
+
+    std::vector<PhysicsBody*> bound_body_parts;
 
 };
 

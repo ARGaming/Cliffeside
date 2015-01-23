@@ -32,6 +32,10 @@ private:
     void arHandleTextureDir();
 
     Arc m_attackArc;
+
+    std::string m_id;
+    sf::CircleShape m_bound_circle;
+
 };
 
 #endif // PLAYER_H_INCLUDED
