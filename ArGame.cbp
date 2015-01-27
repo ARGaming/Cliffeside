@@ -57,8 +57,6 @@
 		<Unit filename="src/Assets/Back.png" />
 		<Unit filename="src/Assets/Front.png" />
 		<Unit filename="src/Assets/badBG.png" />
-		<Unit filename="src/Components/PhysicsBody.cpp" />
-		<Unit filename="src/Components/PhysicsBody.h" />
 		<Unit filename="src/Core/Math.cpp" />
 		<Unit filename="src/Core/Math.h" />
 		<Unit filename="src/Game.cpp" />

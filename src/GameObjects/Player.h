@@ -14,7 +14,6 @@ public:
     void arHandleEvent(const sf::Event& e);
     void arUpdate(float angle, sf::View& view);
     virtual void draw(sf::RenderTarget& target) override;
-    void arPlayerBoundariesCollision(int world_width, int world_height);
 
     float arGetStamina();
     sf::Vector2f arGetBodyCenter();
@@ -33,8 +32,6 @@ private:
 
     Arc m_attackArc;
 
-    std::string m_id;
-    sf::CircleShape m_bound_circle;
 
 };
 
