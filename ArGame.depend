@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1422505169 source:c:\users\logan\documents\cliffeside\attack.cpp
+	"attack.h"
+
+1422505169 source:c:\users\logan\documents\cliffeside\enemy.cpp
+	"enemy.h"
+
+1422505169 source:c:\users\logan\documents\cliffeside\entity.cpp
+	"entity.h"
+
+1422505169 source:c:\users\logan\documents\cliffeside\event.cpp
+	"event.h"
+
+1422505169 source:c:\users\logan\documents\cliffeside\player.cpp
+	"player.h"
+
+1422503945 source:c:\users\logan\documents\cliffeside\render.cpp
+
+1422504462 source:c:\users\logan\documents\cliffeside\game.cpp
+	"include.h"
+
+1422505564 c:\users\logan\documents\cliffeside\include.h
+	<iostream>
+	<cstdlib>
+	<cmath>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	"render.h"
+	"event.h"
+	"entity.h"
+
+1422505513 c:\users\logan\documents\cliffeside\render.h
+	"include.h"
+
+1422505169 c:\users\logan\documents\cliffeside\event.h
+	"include.h"
+
+1422505169 c:\users\logan\documents\cliffeside\entity.h
+	"include.h"
+
+1422505169 c:\users\logan\documents\cliffeside\attack.h
+	"include.h"
+
+1422505169 c:\users\logan\documents\cliffeside\enemy.h
+	"include.h"
+
+1422505169 c:\users\logan\documents\cliffeside\player.h
+	"include.h"
+
