@@ -65,8 +65,6 @@
 		<Unit filename="Math.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
-		<Unit filename="WorldRenderer.cpp" />
-		<Unit filename="WorldRenderer.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

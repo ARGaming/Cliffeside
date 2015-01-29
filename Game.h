@@ -9,7 +9,7 @@
 #include "Arc.h"
 #include "Entity.h"
 #include "Bar.h"
-#include "WorldRenderer.h"
+
 
 
 class Game
