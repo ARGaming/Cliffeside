@@ -2,6 +2,7 @@
 #define ENEMY_H
 
 #include "include.h"
+#include "entity.h"
 
 class Enemy : public Entity
 {

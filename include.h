@@ -2,6 +2,7 @@
 #define INCLUDE_H
 
 #include<iostream>
+#include<vector>
 #include<cstdlib>
 #include<cmath>
 
@@ -9,10 +10,6 @@
 #include<SFML/Window.hpp>
 #include<SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
-
-#include "render.h"
-#include "event.h"
-#include "entity.h"
 
 
 #endif // INCLUDE_H
