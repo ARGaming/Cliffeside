@@ -5,7 +5,7 @@
 1422505169 source:c:\users\logan\documents\cliffeside\enemy.cpp
 	"enemy.h"
 
-1422505169 source:c:\users\logan\documents\cliffeside\entity.cpp
+1423118215 source:c:\users\logan\documents\cliffeside\entity.cpp
 	"entity.h"
 
 1422505169 source:c:\users\logan\documents\cliffeside\event.cpp
@@ -14,40 +14,45 @@
 1422505169 source:c:\users\logan\documents\cliffeside\player.cpp
 	"player.h"
 
-1422503945 source:c:\users\logan\documents\cliffeside\render.cpp
+1423118198 source:c:\users\logan\documents\cliffeside\render.cpp
+	"render.h"
 
-1422504462 source:c:\users\logan\documents\cliffeside\game.cpp
+1423115857 source:c:\users\logan\documents\cliffeside\game.cpp
 	"include.h"
+	"input.h"
+	"render.h"
 
-1422505564 c:\users\logan\documents\cliffeside\include.h
+1423115642 c:\users\logan\documents\cliffeside\include.h
 	<iostream>
+	<vector>
 	<cstdlib>
 	<cmath>
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
-	"render.h"
-	"event.h"
-	"entity.h"
 
-1422505513 c:\users\logan\documents\cliffeside\render.h
+1423115643 c:\users\logan\documents\cliffeside\render.h
 	"include.h"
+	"World.h"
 
 1422505169 c:\users\logan\documents\cliffeside\event.h
 	"include.h"
 
-1422505169 c:\users\logan\documents\cliffeside\entity.h
+1423118198 c:\users\logan\documents\cliffeside\entity.h
 	"include.h"
 
-1422505169 c:\users\logan\documents\cliffeside\attack.h
+1423092181 c:\users\logan\documents\cliffeside\attack.h
 	"include.h"
+	"entity.h"
 
-1422505169 c:\users\logan\documents\cliffeside\enemy.h
+1423092181 c:\users\logan\documents\cliffeside\enemy.h
 	"include.h"
+	"entity.h"
 
-1422505169 c:\users\logan\documents\cliffeside\player.h
+1423092181 c:\users\logan\documents\cliffeside\player.h
 	"include.h"
+	"entity.h"
 
 1422508552 source:c:\users\anderson\desktop\projects\cliffeside\attack.cpp
 	"attack.h"
@@ -593,5 +598,17 @@
 	"include.h"
 
 1423198269 source:c:\users\anderson\desktop\anderson\cliffeside\world.cpp
+	"World.h"
+
+1423092181 c:\users\logan\documents\cliffeside\input.h
+	"include.h"
+
+1423113039 c:\users\logan\documents\cliffeside\world.h
+	"include.h"
+
+1423092181 source:c:\users\logan\documents\cliffeside\input.cpp
+	"input.h"
+
+1423113039 source:c:\users\logan\documents\cliffeside\world.cpp
 	"World.h"
 

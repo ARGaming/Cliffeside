@@ -11,6 +11,7 @@ void RenderSys::arInit()
 void RenderSys::arUpdate(float delta)
 {
     world->arUpdateWorld(delta);
+    //entity list check?
 }
 
 void RenderSys::arRender(sf::RenderWindow& window)

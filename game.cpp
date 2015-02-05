@@ -7,7 +7,7 @@ int main()
     std::cout << "Hello Again!" << std::endl;
 
     //Create window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Cliffeside");
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "Cliffeside");
     window.setFramerateLimit(60);
 
     //Input handle for window
