@@ -53,12 +53,8 @@
 			<Add library="dxguid" />
 			<Add directory="C:/SFML-2.1/lib" />
 		</Linker>
-		<Unit filename="SystemManager.cpp" />
-		<Unit filename="SystemManager.h" />
 		<Unit filename="attack.cpp" />
 		<Unit filename="attack.h" />
-		<Unit filename="component.cpp" />
-		<Unit filename="component.h" />
 		<Unit filename="enemy.cpp" />
 		<Unit filename="enemy.h" />
 		<Unit filename="entity.cpp" />

@@ -2,16 +2,16 @@
 #define RENDER_H
 
 #include "include.h"
-#include "component.h"
-
-class RenderSys : public ComponentSys
+#include "World.h"
+class RenderSys
 {
 private:
+    World* world;
 
 public:
-    virtual void arRender(sf::RenderWindow& window) override;
-    virtual void arUpdate(float delta) override;
-    virtual void arInit() override;
+    void arRender(sf::RenderWindow& window);
+    void arUpdate(float delta);
+    void arInit();
 
 };
 

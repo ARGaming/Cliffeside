@@ -2,15 +2,22 @@
 
 void RenderSys::arInit()
 {
+    world = new World();
+    world->arInitWorld();
+
 
 }
 
 void RenderSys::arUpdate(float delta)
 {
-    std::cout << "Updating, and Delta=" << delta << std::endl;
+    world->arUpdateWorld(delta);
 }
 
 void RenderSys::arRender(sf::RenderWindow& window)
 {
-    std::cout << "Rendering....\n\n";
+    window.clear(sf::Color::Black);
+
+    world->arRenderWorld(window);
+
+    window.display();
 }

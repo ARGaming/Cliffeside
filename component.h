@@ -1,7 +1,6 @@
 #ifndef ComponentSys_H
 #define ComponentSys_H
 
-#include "SystemManager.h"
 
 class SystemManager;
 
