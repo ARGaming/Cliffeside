@@ -10,14 +10,13 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1280, 720), "Cliffeside");
     window.setFramerateLimit(60);
 
-    //Input handle for window
-    InputSys* inputHandler = new InputSys();
-    RenderSys* renderer = new RenderSys();
+
+    RenderSys renderer;
 
     sf::Clock clock;
 
     //Initialize rendering
-    renderer->arInit();
+    renderer.arInit();
 
     while(window.isOpen())
     {
@@ -25,7 +24,10 @@ int main()
 
         while(window.pollEvent(windowEvents))
         {
-            inputHandler->arHandleWindowEvents(window, windowEvents);
+            if (windowEvents.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            {
+                window.close();
+            }
         }
 
         //Retrieve delta time
@@ -34,13 +36,13 @@ int main()
         float delta = elapsed.asSeconds();
 
         //Update and render window
-        renderer->arUpdate(delta);
+        renderer.arUpdate(delta);
 
 
-        renderer->arRender(window);
+        renderer.arRender(window);
     }
 
-    delete inputHandler;
+
 
     return 0;
 }

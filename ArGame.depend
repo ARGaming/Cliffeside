@@ -533,7 +533,7 @@
 	"include.h"
 	"entity.h"
 
-1423193690 c:\users\anderson\desktop\anderson\cliffeside\include.h
+1423422260 c:\users\anderson\desktop\anderson\cliffeside\include.h
 	<iostream>
 	<vector>
 	<cstdlib>
@@ -543,7 +543,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1423193690 c:\users\anderson\desktop\anderson\cliffeside\entity.h
+1423516771 c:\users\anderson\desktop\anderson\cliffeside\entity.h
 	"include.h"
 
 1423194345 source:c:\users\anderson\desktop\anderson\cliffeside\component.cpp
@@ -562,10 +562,11 @@
 	"include.h"
 	"entity.h"
 
-1423193690 source:c:\users\anderson\desktop\anderson\cliffeside\entity.cpp
+1423516791 source:c:\users\anderson\desktop\anderson\cliffeside\entity.cpp
 	"entity.h"
+	"render.h"
 
-1423197487 source:c:\users\anderson\desktop\anderson\cliffeside\game.cpp
+1423514211 source:c:\users\anderson\desktop\anderson\cliffeside\game.cpp
 	"include.h"
 	"input.h"
 	"render.h"
@@ -576,28 +577,29 @@
 1423193690 source:c:\users\anderson\desktop\anderson\cliffeside\input.cpp
 	"input.h"
 
-1423193690 source:c:\users\anderson\desktop\anderson\cliffeside\player.cpp
+1423516872 source:c:\users\anderson\desktop\anderson\cliffeside\player.cpp
 	"player.h"
 
-1423193690 c:\users\anderson\desktop\anderson\cliffeside\player.h
+1423514704 c:\users\anderson\desktop\anderson\cliffeside\player.h
 	"include.h"
 	"entity.h"
 
-1423198203 source:c:\users\anderson\desktop\anderson\cliffeside\render.cpp
+1423516063 source:c:\users\anderson\desktop\anderson\cliffeside\render.cpp
 	"render.h"
 
-1423198134 c:\users\anderson\desktop\anderson\cliffeside\render.h
+1423511308 c:\users\anderson\desktop\anderson\cliffeside\render.h
 	"include.h"
 	"World.h"
+	"player.h"
 
 1423193690 source:c:\users\anderson\desktop\anderson\cliffeside\systemmanager.cpp
 	"SystemManager.h"
 	"render.h"
 
-1423198230 c:\users\anderson\desktop\anderson\cliffeside\world.h
+1423422262 c:\users\anderson\desktop\anderson\cliffeside\world.h
 	"include.h"
 
-1423198269 source:c:\users\anderson\desktop\anderson\cliffeside\world.cpp
+1423422262 source:c:\users\anderson\desktop\anderson\cliffeside\world.cpp
 	"World.h"
 
 1423092181 c:\users\logan\documents\cliffeside\input.h

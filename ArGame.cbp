@@ -63,8 +63,6 @@
 		<Unit filename="entity.h" />
 		<Unit filename="game.cpp" />
 		<Unit filename="include.h" />
-		<Unit filename="input.cpp" />
-		<Unit filename="input.h" />
 		<Unit filename="player.cpp" />
 		<Unit filename="player.h" />
 		<Unit filename="render.cpp" />
