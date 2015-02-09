@@ -36,7 +36,7 @@ void RenderSys::arUpdate(float delta)
             //Retrieve the index of the entity
             int entityIndex = std::find(gameObjectsManager.getGameObjects().begin(), gameObjectsManager.getGameObjects().end(), entity) - gameObjectsManager.getGameObjects().begin();
             //Remove the entity
-            //gameObjectsManager.getGameObjects().erase(gameObjectsManager.getGameObjects().begin() + entityIndex);
+            gameObjectsManager.getGameObjects().erase(gameObjectsManager.getGameObjects().begin() + entityIndex);
         }
     }
 }
@@ -58,7 +58,7 @@ void RenderSys::arRender(sf::RenderWindow& window)
         else
         {
             //Retrieve the index of the entity
-            int entityIndex = std::find(gameObjectsManager.getGameObjects().begin(), gameObjectsManager.getGameObjects().end(), entity) - gameObjectsManager.getGameObjects().begin();
+            //int entityIndex = std::find(gameObjectsManager.getGameObjects().begin(), gameObjectsManager.getGameObjects().end(), entity) - gameObjectsManager.getGameObjects().begin();
             //Remove the entity
             //gameObjectsManager.getGameObjects().erase(gameObjectsManager.getGameObjects().begin() + entityIndex);
         }

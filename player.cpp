@@ -13,7 +13,7 @@ void Player::init()
     setPosition(sf::Vector2f(400, 400));
     setSpeed(300);
     setMotion(sf::Vector2i(0,  0));
-    setAlive(true);
+    setAlive(false);
 }
 
 void Player::render(sf::RenderWindow& window)
@@ -35,7 +35,39 @@ void Player::handleInput()
     setMotion(sf::Vector2i(0, 0));
 
     //Player input
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) and sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        //Motion is the direction the player is going to be moving
+        setMotion(sf::Vector2i(-1, -1));
+
+        //Flip the texture to view the direction the player is going, left = looking back
+        flipTexture(false);
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) and sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        //Motion is the direction the player is going to be moving
+        setMotion(sf::Vector2i(-1, 1));
+
+        //Flip the texture to view the direction the player is going, left = looking back
+        flipTexture(false);
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) and sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        //Motion is the direction the player is going to be moving
+        setMotion(sf::Vector2i(1, -1));
+
+        //Flip the texture to view the direction the player is going, left = looking back
+        flipTexture(true);
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) and sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        //Motion is the direction the player is going to be moving
+        setMotion(sf::Vector2i(1, 1));
+
+        //Flip the texture to view the direction the player is going, left = looking back
+        flipTexture(true);
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         //Motion is the direction the player is going to be moving
         setMotion(sf::Vector2i(-1, 0));
@@ -43,24 +75,23 @@ void Player::handleInput()
         //Flip the texture to view the direction the player is going, left = looking back
         flipTexture(false);
     }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         setMotion(sf::Vector2i(1, 0));
 
         //Flip the texture to view the direction the player is going, left = looking back
         flipTexture(true);
     }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         //Motion is the direction the player is going to be moving
         setMotion(sf::Vector2i(0, -1));
     }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         //Motion is the direction the player is going to be moving
         setMotion(sf::Vector2i(0, 1));
     }
+
+
 }
