@@ -1,14 +1,19 @@
 #include "player.h"
 
-Player::Player(std::string id, sf::Vector2f position)
+Player::Player()
 {
-    setID(id);
+
+}
+
+void Player::init()
+{
+    setID("player");
     shoot = false;
     setTexture("assets/front.png", "assets/back.png");
-    setPosition(position);
-    registerEntity(this);
+    setPosition(sf::Vector2f(400, 400));
     setSpeed(300);
     setMotion(sf::Vector2i(0,  0));
+    setAlive(true);
 }
 
 void Player::render(sf::RenderWindow& window)
@@ -58,6 +63,4 @@ void Player::handleInput()
         //Motion is the direction the player is going to be moving
         setMotion(sf::Vector2i(0, 1));
     }
-
-    std::cout << "View dir: " << getViewDir().x << ", " << getViewDir().y << "\n\n";
 }

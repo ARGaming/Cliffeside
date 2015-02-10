@@ -543,7 +543,7 @@
 	<SFML/Graphics.hpp>
 	<SFML/Audio.hpp>
 
-1423516771 c:\users\anderson\desktop\anderson\cliffeside\entity.h
+1423609574 c:\users\anderson\desktop\anderson\cliffeside\entity.h
 	"include.h"
 
 1423194345 source:c:\users\anderson\desktop\anderson\cliffeside\component.cpp
@@ -562,9 +562,9 @@
 	"include.h"
 	"entity.h"
 
-1423516791 source:c:\users\anderson\desktop\anderson\cliffeside\entity.cpp
+1423609566 source:c:\users\anderson\desktop\anderson\cliffeside\entity.cpp
 	"entity.h"
-	"render.h"
+	"game_object_manager.h"
 
 1423514211 source:c:\users\anderson\desktop\anderson\cliffeside\game.cpp
 	"include.h"
@@ -577,20 +577,21 @@
 1423193690 source:c:\users\anderson\desktop\anderson\cliffeside\input.cpp
 	"input.h"
 
-1423516872 source:c:\users\anderson\desktop\anderson\cliffeside\player.cpp
+1423609699 source:c:\users\anderson\desktop\anderson\cliffeside\player.cpp
 	"player.h"
 
-1423514704 c:\users\anderson\desktop\anderson\cliffeside\player.h
+1423606028 c:\users\anderson\desktop\anderson\cliffeside\player.h
 	"include.h"
 	"entity.h"
 
-1423516063 source:c:\users\anderson\desktop\anderson\cliffeside\render.cpp
+1423609742 source:c:\users\anderson\desktop\anderson\cliffeside\render.cpp
 	"render.h"
+	"player.h"
 
-1423511308 c:\users\anderson\desktop\anderson\cliffeside\render.h
+1423607458 c:\users\anderson\desktop\anderson\cliffeside\render.h
 	"include.h"
 	"World.h"
-	"player.h"
+	"game_object_manager.h"
 
 1423193690 source:c:\users\anderson\desktop\anderson\cliffeside\systemmanager.cpp
 	"SystemManager.h"
@@ -613,4 +614,11 @@
 
 1423113039 source:c:\users\logan\documents\cliffeside\world.cpp
 	"World.h"
+
+1423607517 source:c:\users\anderson\desktop\anderson\cliffeside\game_object_manager.cpp
+	"game_object_manager.h"
+
+1423608094 c:\users\anderson\desktop\anderson\cliffeside\game_object_manager.h
+	"entity.h"
+	"include.h"
 

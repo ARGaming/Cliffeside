@@ -12,12 +12,12 @@ private:
     void handleInput();
 
 public:
-    Player(std::string, sf::Vector2f);
-    ~Player();
+    Player();
 
     void setShoot(bool shooting);
     bool isShooting();
 
+    void init() override;
     void render(sf::RenderWindow&) override;
     void update(float) override;
 

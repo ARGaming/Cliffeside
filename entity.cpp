@@ -1,5 +1,5 @@
 #include "entity.h"
-#include "render.h"
+#include "game_object_manager.h"
 
 
 bool Entity::checkAlive()
@@ -65,12 +65,6 @@ sf::Sprite Entity::getSprite()
     return entSprite;
 }
 
-void Entity::registerEntity(Entity* entity)
-{
-    RenderSys renderer;
-    renderer.GameEntities.push_back(entity);
-}
-
 void Entity::setSpeed(int new_speed)
 {
     speed = new_speed;
@@ -96,6 +90,11 @@ void Entity::flipTexture(bool isFront)
 sf::Vector2i Entity::getViewDir()
 {
     return viewDir;
+}
+
+void Entity::setAlive(bool new_alive)
+{
+    isAlive = new_alive;
 }
 
 

@@ -27,6 +27,7 @@ public:
 
 
     bool checkAlive();
+    void setAlive(bool);
 
     void setPosition(sf::Vector2f);
     sf::Vector2f getPosition();
@@ -48,8 +49,7 @@ public:
 
     sf::Vector2i getViewDir();
 
-    void registerEntity(Entity* entity);
-
+    virtual void init() = 0;
     virtual void render(sf::RenderWindow&) = 0;
     virtual void update(float) = 0;
 
